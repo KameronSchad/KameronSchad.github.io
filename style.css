@@ -1,0 +1,77 @@
+
+/* GENERAL PAGE STYLING */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #243247;
+    line-height: 1.6;
+}
+
+/* DARK HEADER */
+
+header {
+    background-color: #19283d;
+    color: white;
+    padding: 70px 24px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 42px;
+    margin: 0;
+}
+
+header p {
+    color: #c4d0df;
+    font-size: 18px;
+}
+
+/* MAIN CONTENT */
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+/* CONTENT SECTIONS */
+
+section {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    border: 1px solid #e0e5ec;
+}
+
+/* HEADINGS */
+
+h2 {
+    color: #19283d;
+    margin-top: 0;
+}
+
+/* LINKS */
+
+a {
+    color: #2563a6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* MOBILE SCREENS */
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 32px;
+    }
+
+    header {
+        padding: 45px 20px;
+    }
+}

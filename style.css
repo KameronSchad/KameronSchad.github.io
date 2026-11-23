@@ -511,3 +511,12 @@ html, body {
 .scene-hero-photo img {display:block; width:100%; height:auto; max-height:660px; object-fit:contain;}
 .scene-hero-photo figcaption {color:var(--muted);font-size:.82rem;line-height:1.5;padding:15px 19px;background:#101c2c}
 @media (prefers-reduced-motion:reduce) {.js .reveal {opacity:1;transform:none}}
+
+/* V8 - resume navigation and headshot */
+.nav-links { flex-wrap: wrap; justify-content: flex-end; }
+.nav-links .nav-resume { padding:7px 12px; border:1px solid #4b829e; border-radius:8px; color:#c9faf4; background:rgba(39,115,128,.16); }
+.nav-links .nav-resume:hover { background:rgba(50,150,160,.25); color:#fff; }
+.portrait-frame { width:min(100%,350px); height:370px; justify-self:center; border-radius:26px; }
+.portrait-frame img { object-fit:cover; object-position:center; }
+@media (max-width:760px) { .nav-links { gap:9px 13px; } .nav-links a { font-size:.8rem; } }
+@media (max-width:480px) { .nav-links { justify-content:center; } }

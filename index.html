@@ -6,58 +6,759 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kameron Schad | Engineering Portfolio</title>
+    <meta name="description"
+          content="Mechanical engineering portfolio of Kameron Schad. Projects in CAD, mechanical design, prototyping, and manufacturing.">
+
+    <meta name="theme-color" content="#101c30">
+
+    <title>Kameron Schad | Mechanical Engineering</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Kameron Schad</h1>
-        <p>Mechanical Engineering Student</p>
-        <p>Design | Prototyping | Manufacturing</p>
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="#home" class="logo">
+                KS<span class="logo-dot">.</span>
+                <span class="logo-label">ENGINEERING</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact" class="nav-contact">
+                    Contact
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <header id="home" class="hero">
+
+        <div class="hero-glow hero-glow-one"></div>
+        <div class="hero-glow hero-glow-two"></div>
+        <div class="hero-grid"></div>
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                MECHANICAL ENGINEERING PORTFOLIO
+            </p>
+
+            <h1>
+                Design. Build. Test.
+                <span class="gradient-text">Improve.</span>
+            </h1>
+
+            <p class="hero-description">
+                I'm Kameron Schad, a mechanical engineering
+                student focused on turning ideas into
+                functional hardware through design,
+                analysis, and hands-on experimentation.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects" class="button button-primary">
+                    Explore My Projects
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <a href="#about" class="button button-outline">
+                    About Me
+                </a>
+
+            </div>
+
+            <div class="hero-tags">
+                <span>SolidWorks</span>
+                <span>Mechanical Design</span>
+                <span>3D Printing</span>
+                <span>Fabrication</span>
+            </div>
+
+        </div>
+
+        <a href="#projects" class="scroll-indicator">
+            <span>SCROLL TO EXPLORE</span>
+            <span class="scroll-arrow" aria-hidden="true">↓</span>
+        </a>
+
     </header>
+
 
     <main>
 
-        <section>
-            <h2>About Me</h2>
+        <!-- PROJECTS -->
 
-            <p>
-                I'm a mechanical engineering student at
-                Colorado Mesa University through the
-                CU Boulder Engineering Partnership Program.
-                I'm interested in mechanical design,
-                manufacturing, and aerospace engineering.
-            </p>
+        <section id="projects" class="projects-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div>
+                        <p class="section-label">
+                            01 / SELECTED WORK
+                        </p>
+
+                        <h2>Engineering Projects</h2>
+                    </div>
+
+                    <p class="section-intro">
+                        A collection of projects involving
+                        mechanical design, prototyping,
+                        testing, and problem-solving.
+                    </p>
+
+                </div>
+
+
+                <div class="project-grid">
+
+                    <!-- FEATURED PROJECT -->
+
+                    <article class="project-card featured reveal">
+
+                        <div class="project-visual visual-mount">
+                            <span class="visual-number">01</span>
+
+                            <div class="visual-content">
+                                <span class="visual-symbol">↗</span>
+                                <span class="visual-title">
+                                    HELMET LIGHT MOUNT
+                                </span>
+                                <span class="visual-subtitle">
+                                    CAD / FDM / STRESS ANALYSIS
+                                </span>
+                            </div>
+
+                            <span class="visual-corner">
+                                FEATURED PROJECT
+                            </span>
+                        </div>
+
+                        <div class="project-info">
+
+                            <p class="project-category">
+                                PERSONAL PROJECT
+                            </p>
+
+                            <h3>Custom Helmet Light Mount</h3>
+
+                            <p>
+                                Designed an original mounting adapter
+                                to connect a detachable bicycle light
+                                to an existing GoPro helmet mount.
+                                Investigated repeated retention-tab
+                                failures using SolidWorks stress
+                                simulations, material changes, and
+                                physical testing. Changing the print
+                                orientation to 45 degrees greatly
+                                improved durability.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>SolidWorks</span>
+                                <span>Static Stress Analysis</span>
+                                <span>Additive Manufacturing</span>
+                            </div>
+
+                            <a href="#mount-details" class="project-link">
+                                Explore the engineering process
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CLAW MACHINE -->
+
+                    <article class="project-card reveal">
+
+                        <div class="project-visual visual-claw">
+                            <span class="visual-number">02</span>
+
+                            <div class="visual-content">
+                                <span class="visual-symbol">⌘</span>
+                                <span class="visual-title">
+                                    CLAW MACHINE
+                                </span>
+                                <span class="visual-subtitle">
+                                    MECHANISMS / PROTOTYPING
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="project-info">
+
+                            <p class="project-category">
+                                ACADEMIC PROJECT
+                            </p>
+
+                            <h3>Two-Player Claw Machine</h3>
+
+                            <p>
+                                Designed more than 30 mechanical
+                                components in SolidWorks, including
+                                a pneumatically actuated claw and
+                                crank mechanism. Completed more than
+                                five design iterations to improve
+                                gripping performance and reliability.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>CAD</span>
+                                <span>Mechanisms</span>
+                                <span>Prototyping</span>
+                            </div>
+
+                            <a href="#claw-details" class="project-link">
+                                View project details
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                        </div>
+                    </article>
+
+
+                    <!-- CLIENT PROJECT -->
+
+                    <article class="project-card reveal">
+
+                        <div class="project-visual visual-enclosure">
+                            <span class="visual-number">03</span>
+
+                            <div class="visual-content">
+                                <span class="visual-symbol">◇</span>
+                                <span class="visual-title">
+                                    DEVICE ENCLOSURE
+                                </span>
+                                <span class="visual-subtitle">
+                                    INTEGRATION / DESIGN
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="project-info">
+
+                            <p class="project-category">
+                                CLIENT-SPONSORED PROJECT
+                            </p>
+
+                            <h3>Multidisciplinary Device Design</h3>
+
+                            <p>
+                                Led most of the mechanical CAD work
+                                for a four-part device enclosure
+                                housing circuit boards, sensors,
+                                wiring, and a battery. Measured
+                                eight physical components and
+                                refined dimensions to improve fit
+                                and assembly.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>SolidWorks</span>
+                                <span>Mechanical Integration</span>
+                                <span>Tolerances</span>
+                            </div>
+
+                            <a href="#enclosure-details" class="project-link">
+                                View project details
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                        </div>
+                    </article>
+
+
+                    <!-- SCENE SHOP -->
+
+                    <article class="project-card reveal">
+
+                        <div class="project-visual visual-shop">
+                            <span class="visual-number">04</span>
+
+                            <div class="visual-content">
+                                <span class="visual-symbol">+</span>
+                                <span class="visual-title">
+                                    SHOP FABRICATION
+                                </span>
+                                <span class="visual-subtitle">
+                                    DESIGN / CONSTRUCTION
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="project-info">
+
+                            <p class="project-category">
+                                PROFESSIONAL EXPERIENCE
+                            </p>
+
+                            <h3>Scene Shop Infrastructure</h3>
+
+                            <p>
+                                Independently designed and built an
+                                18-foot miter saw workstation for
+                                CMU's theater scene shop. Also
+                                designed four mobile worktables
+                                and led coworkers through their
+                                construction.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>Fabrication</span>
+                                <span>Woodworking</span>
+                                <span>Project Leadership</span>
+                            </div>
+
+                            <a href="#shop-details" class="project-link">
+                                View project details
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                        </div>
+                    </article>
+
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>Engineering Projects</h2>
 
-            <h3>Helmet Light Mount</h3>
-            <p>
-                Custom 3D-printed mounting system designed
-                in SolidWorks, with iterative testing
-                and structural analysis.
-            </p>
+        <!-- FEATURED CASE STUDY -->
 
-            <h3>Two-Player Claw Machine</h3>
-            <p>
-                Mechanical design and prototyping of a
-                custom claw machine.
-            </p>
+        <section id="mount-details" class="case-study-section">
 
-            <h3>Client-Sponsored Engineering Project</h3>
-            <p>
-                Mechanical enclosure design for a
-                multidisciplinary engineering project.
-            </p>
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-label">
+                            02 / ENGINEERING PROCESS
+                        </p>
+
+                        <h2>From Failure to Function</h2>
+                    </div>
+                </div>
+
+                <div class="case-study-layout">
+
+                    <div class="case-study-intro reveal">
+
+                        <span class="case-study-badge">
+                            FEATURED CASE STUDY
+                        </span>
+
+                        <h3>Helmet Light Mount</h3>
+
+                        <p>
+                            My goal was to create a compact adapter
+                            that would allow a bicycle light to
+                            securely attach to my helmet's existing
+                            GoPro mount while remaining easy to remove.
+                        </p>
+
+                        <p>
+                            The mounting mechanism worked, but its
+                            small flexible retention tab initially
+                            fractured after only one or two uses.
+                        </p>
+
+                        <div class="case-stat-grid">
+                            <div class="case-stat">
+                                <strong>1-2</strong>
+                                <span>Initial uses before failure</span>
+                            </div>
+
+                            <div class="case-stat">
+                                <strong>45°</strong>
+                                <span>Improved print orientation</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="process-list">
+
+                        <div class="process-step reveal">
+                            <span class="step-number">01</span>
+                            <div>
+                                <h4>Identify the Problem</h4>
+                                <p>
+                                    The original retention tab failed
+                                    along a 3D-printing layer boundary
+                                    during normal attachment and removal.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="process-step reveal">
+                            <span class="step-number">02</span>
+                            <div>
+                                <h4>Investigate the Failure</h4>
+                                <p>
+                                    I adjusted tolerances, compared
+                                    PLA and PETG-CF materials, and ran
+                                    multiple SolidWorks static stress
+                                    simulations to investigate stress
+                                    concentrations.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="process-step reveal">
+                            <span class="step-number">03</span>
+                            <div>
+                                <h4>Change the Manufacturing Approach</h4>
+                                <p>
+                                    Printing vertically favored the
+                                    GoPro connection but weakened the
+                                    flexible retention tab. I changed
+                                    the orientation to approximately
+                                    45 degrees.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="process-step reveal">
+                            <span class="step-number">04</span>
+                            <div>
+                                <h4>Evaluate the Result</h4>
+                                <p>
+                                    The revised printing orientation
+                                    substantially improved durability
+                                    while preserving the snap-fit
+                                    functionality. This reinforced the
+                                    importance of considering
+                                    manufacturing constraints during
+                                    mechanical design.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- OTHER PROJECT DETAILS -->
+
+        <section class="detail-section">
+
+            <div class="container detail-grid">
+
+                <article id="claw-details" class="detail-card reveal">
+                    <p class="section-label">PROJECT 02</p>
+                    <h3>Claw Machine</h3>
+                    <p>
+                        Designed mechanical components and created
+                        dimensioned engineering drawings in SolidWorks.
+                        Iterated the claw mechanism through physical
+                        testing to improve its ability to grip prizes.
+                    </p>
+                </article>
+
+                <article id="enclosure-details" class="detail-card reveal">
+                    <p class="section-label">PROJECT 03</p>
+                    <h3>Device Enclosure</h3>
+                    <p>
+                        Developed a four-part housing around
+                        electronic components, balancing packaging,
+                        component fit, and manufacturability
+                        while collaborating with an engineering team.
+                    </p>
+                </article>
+
+                <article id="shop-details" class="detail-card reveal">
+                    <p class="section-label">PROJECT 04</p>
+                    <h3>Scene Shop Infrastructure</h3>
+                    <p>
+                        Designed and constructed an 18-foot saw
+                        workstation. Designed four mobile worktables,
+                        delegated fabrication tasks, and helped
+                        train less-experienced coworkers.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section id="about" class="about-section">
+
+            <div class="container about-layout">
+
+                <div class="reveal">
+
+                    <p class="section-label">03 / ABOUT ME</p>
+                    <h2>Engineer in Progress.</h2>
+
+                    <p>
+                        I'm pursuing a bachelor's degree in
+                        mechanical engineering through the
+                        CU Boulder and Colorado Mesa University
+                        Engineering Partnership Program.
+                    </p>
+
+                    <p>
+                        I'm particularly interested in mechanical
+                        hardware design, aerospace, propulsion,
+                        and manufacturing. I enjoy projects that
+                        require both analytical thinking and
+                        physical experimentation.
+                    </p>
+
+                    <p>
+                        Outside the classroom, I have worked in
+                        fabrication environments and pursue
+                        independent design projects that allow
+                        me to apply concepts from my coursework.
+                    </p>
+
+                </div>
+
+                <div class="education-card reveal">
+
+                    <p class="card-kicker">EDUCATION</p>
+
+                    <h3>B.S. Mechanical Engineering</h3>
+
+                    <p>
+                        CU Boulder / Colorado Mesa University
+                        Engineering Partnership Program
+                    </p>
+
+                    <div class="education-divider"></div>
+
+                    <div class="education-row">
+                        <span>Expected Graduation</span>
+                        <strong>May 2028</strong>
+                    </div>
+
+                    <div class="education-row">
+                        <span>GPA</span>
+                        <strong>4.0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section id="skills" class="skills-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-label">
+                            04 / CAPABILITIES
+                        </p>
+
+                        <h2>Technical Skills</h2>
+                    </div>
+                </div>
+
+                <div class="skills-grid">
+
+                    <div class="skill-card reveal">
+                        <span class="skill-icon">01</span>
+                        <h3>Mechanical Design</h3>
+                        <p>
+                            SolidWorks, 3D assemblies,
+                            dimensioned drawings,
+                            fit and tolerances.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <span class="skill-icon">02</span>
+                        <h3>Analysis & Testing</h3>
+                        <p>
+                            SolidWorks static stress analysis,
+                            physical testing, failure analysis,
+                            and design iteration.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <span class="skill-icon">03</span>
+                        <h3>Manufacturing</h3>
+                        <p>
+                            3D printing, basic machining,
+                            woodworking, fabrication,
+                            and shop equipment.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <span class="skill-icon">04</span>
+                        <h3>Additional Tools</h3>
+                        <p>
+                            MATLAB, introductory C++,
+                            calipers, oscilloscopes,
+                            and signal generators.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section id="contact" class="contact-section">
+
+            <div class="container contact-content reveal">
+
+                <p class="section-label">
+                    05 / GET IN TOUCH
+                </p>
+
+                <h2>
+                    Interested in working
+                    <span class="gradient-text">together?</span>
+                </h2>
+
+                <p>
+                    I'm interested in engineering internship
+                    opportunities involving mechanical design,
+                    hardware development, manufacturing,
+                    and testing.
+                </p>
+
+                <div class="contact-buttons">
+
+                    <a href="https://github.com/KameronSchad"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="button button-primary">
+
+                        View GitHub
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                    <!-- Add an email or LinkedIn link here later. -->
+
+                </div>
+
+            </div>
         </section>
 
     </main>
 
-</body>
 
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <span>Kameron Schad</span>
+
+            <span>
+                Designed and built with HTML, CSS,
+                and JavaScript.
+            </span>
+
+            <a href="#home">Back to top ↑</a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SCROLL ANIMATIONS -->
+
+    <script>
+
+        const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        const revealElements = document.querySelectorAll(
+            ".reveal"
+        );
+
+        if ("IntersectionObserver" in window && !reducedMotion) {
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                            observer.unobserve(entry.target);
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.08,
+                    rootMargin: "0px 0px 40px 0px"
+                }
+            );
+
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+
+        } else {
+
+            revealElements.forEach(element => {
+                element.classList.add("visible");
+            });
+
+        }
+
+        // Change navigation appearance when scrolling
+
+        const navbar = document.querySelector(".navbar");
+
+        function updateNavbar() {
+
+            navbar.classList.toggle(
+                "scrolled",
+                window.scrollY > 30
+            );
+
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateNavbar,
+            { passive: true }
+        );
+
+        updateNavbar();
+
+    </script>
+
+</body>
 </html>

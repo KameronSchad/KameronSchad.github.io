@@ -4,9 +4,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Selected computational methods coursework using numerical root finding, nonlinear solvers and MATLAB." name="description"/>
+<meta content="MATLAB work on numerical modeling of parachute dynamics, discrete Fourier transforms, tensile-test analysis, and iterative solvers." name="description"/>
 <meta content="#080d16" name="theme-color"/>
-<title>MATLAB Numerical Methods | Kameron Schad - Mechanical Engineering</title>
+<title>Engineering Applications in MATLAB | Kameron Schad - Mechanical Engineering</title>
 <link href="../style.css?v=7" rel="stylesheet"/>
 <script defer="" src="../site.js?v=7"></script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -28,22 +28,42 @@
 </div>
 </nav>
 </header>
-<main id="main"><section class="case-hero wrap">
-<a class="back-link" href="../projects.html">← All projects</a>
-<p class="eyebrow">COMPUTATIONAL METHODS / FALL 2026 / SELECTED LABS</p>
-<h1>MATLAB Numerical Methods</h1>
-<p>A selection of computational methods coursework on finding roots, solving coupled systems, and evaluating convergence. The emphasis is understanding when a numerical result is trustworthy, not simply obtaining a number.</p>
-</section>
-<div class="wrap case-meta"><span><strong>PROJECT TYPE</strong>Selected MATLAB coursework</span><span><strong>METHODS</strong>Bisection, Newton, Jacobi, Gauss-Seidel</span><span><strong>STATUS</strong>Selected topics documented; source files to be added</span></div>
-<div class="wrap case-graphic-shell"><div class="concept-visual case-concept-hero concept-matlab"><span aria-hidden="true" class="concept-grid"></span><span class="concept-overline">NUMERICAL ANALYSIS</span><strong>ITERATE.<br/>CHECK.<br/>CONVERGE.</strong><small>MATLAB / numerical root finding / error estimates</small></div></div>
-<section class="wrap case-proof-strip reveal"><div><strong>Bisection</strong><span>Bracketed root search</span></div><div><strong>Newton</strong><span>Derivative-based updates</span></div><div><strong>Jacobi / GS</strong><span>Iterative linear-system solutions</span></div></section>
-<div class="wrap case-content">
-<section class="case-block reveal"><span class="eyebrow">01 / ROOT FINDING</span><h2>Find a loan interest rate with bisection</h2><p>For a MATLAB assignment, I formulated a root-finding problem using a loan principal, monthly payment, and number of payments. The task was to solve for the interest rate numerically after expressing the payment relationship as a zero-valued residual function. Bisection provided a way to approach a bracketed root while checking error and convergence.</p></section>
-<section class="case-block reveal"><span class="eyebrow">02 / NONLINEAR SYSTEMS</span><h2>Iterate toward a simultaneous solution</h2><p>I practiced Newton-type approaches for coupled nonlinear equations, including computing derivatives, choosing starting guesses, evaluating the Jacobian, and updating estimated roots. The work highlighted why sign conventions, sensible initial guesses, and intermediate checks matter.</p></section>
-<section class="case-block reveal"><span class="eyebrow">03 / ITERATIVE SOLVERS</span><h2>Compare Jacobi and Gauss-Seidel</h2><p>In linear-system exercises, I compared Jacobi and Gauss-Seidel iterations using a common starting estimate and tracked the approximate relative error between iterations. The difference between updating all values simultaneously and reusing newly calculated values was central to the method comparison.</p></section>
-<section class="case-block reveal"><span class="eyebrow">04 / EVIDENCE TO ADD</span><h2>Publish the actual implementations</h2><p>The original .m files and plots are not in this portfolio yet. I'll add selected source code, sample outputs, convergence plots, and verification checks from the actual assignments after reviewing those files. No results or iteration counts are invented here.</p></section>
+<main id="main">
+<section class="case-hero wrap"><a class="back-link" href="../projects.html">← All projects</a>
+<p class="eyebrow">COMPUTATIONAL METHODS / FALL 2026</p>
+<h1>Engineering Applications in MATLAB</h1>
+<p>Selected numerical methods assignments applied to materials, dynamics, signal processing, and equation solving. These examples emphasize implementation, numerical interpretation, and the limitations of simplified models.</p></section>
+<div class="wrap case-meta">
+<span><strong>TYPE</strong>Individual computational coursework</span>
+<span><strong>TOOLS</strong>MATLAB, numerical differentiation, integration, DFT, Euler integration</span>
+<span><strong>FOCUS</strong>Engineering interpretation and error checking</span>
 </div>
-<section class="wrap case-end-note"><h2>Supporting work to add</h2><p>Selected MATLAB scripts, original assignment questions, convergence graphs, iteration tables, and explanations of how each result was validated.</p><a class="text-link" href="../projects.html">Other projects <span aria-hidden="true">↗</span></a></section></main>
+<section class="wrap case-proof-strip reveal">
+<div><strong>360.57 m/s</strong><span>High-altitude jump model's maximum speed</span></div>
+<div><strong>4.137 Hz</strong><span>Strong fourth harmonic identified in engine signal</span></div>
+<div><strong>74.09 GPa</strong><span>Estimated aluminum elastic modulus - depends on specimen-width assumption</span></div>
+</section>
+<div class="wrap case-content">
+<section class="case-block reveal"><span class="eyebrow">01 / DYNAMICS SIMULATION</span>
+<h2>Modeling a high-altitude parachute jump</h2>
+<p>I implemented a time-stepping simulation using the explicit Euler method. The MATLAB model accounted for altitude-dependent air density and gravity, horizontal wind, aerodynamic drag, and a transition during parachute deployment. The simulated maximum speed was 360.57 m/s. The model predicted landing at 406.23 s compared with 553 s observed in the reference footage. That 147-second discrepancy illustrates the limits of a simplified drag-only model, particularly without canopy lift and landing flare.</p></section>
+<section class="case-block reveal"><span class="eyebrow">02 / SIGNAL PROCESSING</span>
+<h2>Finding frequencies in an engine signal</h2>
+<p>Using a discrete Fourier transform, I examined an engine signal in the frequency domain. I identified a fundamental frequency near 1.034 Hz and a stronger fourth harmonic near 4.137 Hz. I used the amplitude spectrum to distinguish the strongest periodic content instead of treating the time-domain waveform alone as sufficient evidence.</p></section>
+<section class="case-block reveal"><span class="eyebrow">03 / MATERIALS DATA</span>
+<h2>Extracting properties from tensile-test results</h2>
+<p>I converted measured tensile-test load and elongation data to engineering stress and strain, estimated an elastic modulus, and applied numerical differentiation and integration to evaluate energy-related material properties. The reported modulus was approximately 74.09 GPa, but it depends on a 12.5 mm specimen width assumed for continuity with an earlier lab. The later lab handout specified 15 mm; therefore the modulus and stress-based quantities should not be treated as independently validated material data.</p></section>
+<section class="case-block reveal"><span class="eyebrow">04 / NUMERICAL SOLVERS</span>
+<h2>Root finding and iterative linear algebra</h2>
+<p>I implemented bisection for a loan-rate equation, Newton's method for coupled nonlinear equations, and Jacobi and Gauss-Seidel iterative methods for linear systems. These assignments required choosing starting values, defining stopping criteria, checking convergence, and comparing the numerical result against the governing equations rather than trusting an output without verification.</p></section>
+<section class="case-block reveal"><span class="eyebrow">05 / LESSON</span>
+<h2>A computed answer still needs engineering judgment</h2>
+<p>Across the labs, the central lesson was that numerical precision is not the same as physical accuracy. Model assumptions, units, discretization, measurement uncertainty, and consistency with reference data determine whether a result is meaningful.</p></section>
+</div>
+<section class="wrap case-end-note"><h2>Analysis skills backed by actual assignments</h2>
+<p>These examples summarize completed MATLAB labs and reports. Numerical results are identified as coursework calculations or model predictions, not independently validated product performance.</p>
+<a class="text-link" href="../projects.html">Explore the hardware projects ↗</a></section>
+</main>
 <footer class="site-footer">
 <div class="wrap footer-content">
 <p>© 2026 Kameron Schad <span class="dot">/</span> Mechanical Engineering</p>

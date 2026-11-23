@@ -23,8 +23,10 @@
         const dotsContainer = document.querySelector('[data-carousel-dots]');
         const prev = document.querySelector('[data-carousel-prev]');
         const next = document.querySelector('[data-carousel-next]');
+        const pauseToggle = document.querySelector('[data-carousel-toggle]');
         let current = 0;
         let interval;
+        let autoplay = !reduceMotion;
 
         if (slides.length > 0 && dotsContainer && prev && next) {
             slides.forEach((slide, index) => {
@@ -52,14 +54,27 @@
             }
             function start() {
                 stop();
-                if (!reduceMotion && !document.hidden) {
-                    interval = window.setInterval(() => show(current + 1), 8000);
+                if (autoplay && !document.hidden) {
+                    interval = window.setInterval(() => show(current + 1), 5000);
                 }
             }
             prev.addEventListener('click', () => { show(current - 1); start(); });
             next.addEventListener('click', () => { show(current + 1); start(); });
-            carousel.addEventListener('mouseenter', stop);
-            carousel.addEventListener('mouseleave', start);
+            if (pauseToggle) {
+                function syncPauseToggle() {
+                    pauseToggle.textContent = autoplay ? 'Pause' : 'Play';
+                    pauseToggle.setAttribute('aria-label', autoplay ? 'Pause project slideshow' : 'Play project slideshow');
+                    pauseToggle.setAttribute('aria-pressed', String(!autoplay));
+                }
+                pauseToggle.addEventListener('click', () => {
+                    autoplay = !autoplay;
+                    syncPauseToggle();
+                    if (autoplay) start(); else stop();
+                });
+                syncPauseToggle();
+            }
+            // Do not stop autoplay just because the pointer rests over a project.
+            // The explicit Pause button and reduced-motion preference provide control.
             carousel.addEventListener('focusin', stop);
             carousel.addEventListener('focusout', event => {
                 if (!carousel.contains(event.relatedTarget)) start();

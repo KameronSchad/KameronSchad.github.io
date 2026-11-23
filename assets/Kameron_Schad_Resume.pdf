@@ -3,61 +3,93 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Count 1 /Kids [3 0 R] >>
 endobj
 3 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
 endobj
 6 0 obj
-<< /Length 4672 >>
+<< /Length 7318 >>
 stream
-0.08 0.25 0.41 rg BT /F2 17 Tf 1 0 0 1 207 752 Tm (KAMERON SCHAD) Tj ET
-0.34 0.41 0.47 rg BT /F1 8.7 Tf 1 0 0 1 183.45 734 Tm (Monument, CO  |  719-200-5645  |  kameronschad6@gmail.com) Tj ET
-0.34 0.41 0.47 rg BT /F1 8.7 Tf 1 0 0 1 187.75 721 Tm (linkedin.com/in/kameronschad  |  kameronschad.github.io) Tj ET
-0.08 0.25 0.41 rg BT /F2 10.3 Tf 1 0 0 1 51 701 Tm (EDUCATION) Tj ET
-0.72 0.8 0.85 RG 0.7 w 51 696 m 561 696 l S
-0.14 0.19 0.24 rg BT /F2 9.25 Tf 1 0 0 1 51 684 Tm (B.S. Mechanical Engineering - CU Boulder / Colorado Mesa University  |  May 2028) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.9 Tf 1 0 0 1 51 670 Tm (Engineering Partnership Program | GPA: 4.0) Tj ET
-0.08 0.25 0.41 rg BT /F2 10.3 Tf 1 0 0 1 51 649 Tm (ENGINEERING PROJECTS) Tj ET
-0.72 0.8 0.85 RG 0.7 w 51 644 m 561 644 l S
-0.14 0.19 0.24 rg BT /F2 9.25 Tf 1 0 0 1 51 632 Tm (Rocket Nose Cone Aerodynamics - Fluid Mechanics Team Project  |  Fall 2026) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 618 Tm (- Designed eight interchangeable rocket nose geometries in SolidWorks and independently ran external-flow CFD) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 606.5 Tm (  simulations) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 593 Tm (- Acquired and analyzed wind-tunnel data from 20-120 mph in Excel and authored report comparing measured drag) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 581.5 Tm (  with CFD limitations) Tj ET
-0.14 0.19 0.24 rg BT /F2 9.25 Tf 1 0 0 1 51 568 Tm (Two-Player Claw Machine - First-Year Engineering Team Project  |  Spring 2025) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 554 Tm (- Proposed CoreXY-style manual gantry concept and modeled 30+ mechanical components in SolidWorks, including) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 542.5 Tm (  claw and crank assemblies) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 529 Tm (- Created dimensioned drawings and STEP files, refined pneumatic claw through 5+ iterations, and contributed) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 517.5 Tm (  to a 70+ page manual) Tj ET
-0.14 0.19 0.24 rg BT /F2 9.25 Tf 1 0 0 1 51 504 Tm (Helmet Light Mount - Independent Design and Prototyping  |  2026) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 490 Tm (- Designed a removable bike-light adapter in SolidWorks; evaluated snap-fit retention-tab stresses using) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 478.5 Tm (  static FEA and physical prototypes) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 465 Tm (- Resolved repeated tab fractures through tolerance and geometry work and improved durability with) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 453.5 Tm (  approximately 45-degree print orientation) Tj ET
-0.08 0.25 0.41 rg BT /F2 10.3 Tf 1 0 0 1 51 433 Tm (PROFESSIONAL EXPERIENCE) Tj ET
-0.72 0.8 0.85 RG 0.7 w 51 428 m 561 428 l S
-0.14 0.19 0.24 rg BT /F2 9.25 Tf 1 0 0 1 51 416 Tm (Stagehand - Oak View Group, Grand Junction, CO  |  Nov 2025 - Present) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 402 Tm (- Support touring production setup and teardown while following technical directions and safety procedures) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 388.5 Tm (- Coordinate with crews of 10+ to move and load equipment across up to four semi-trailers) Tj ET
-0.14 0.19 0.24 rg BT /F2 9.25 Tf 1 0 0 1 51 375 Tm (Scene Shop Technician - Colorado Mesa University  |  Sep 2024 - May 2026) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 361 Tm (- Independently designed and built an 18-foot miter-saw workstation with integrated storage for long lumber) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 347.5 Tm (- Designed four mobile 4 x 8-foot worktables, assigned fabrication tasks, and helped train coworkers in tool) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.7 Tf 1 0 0 1 60 336 Tm (  use) Tj ET
-0.08 0.25 0.41 rg BT /F2 10.3 Tf 1 0 0 1 51 315.5 Tm (TECHNICAL SKILLS) Tj ET
-0.72 0.8 0.85 RG 0.7 w 51 310.5 m 561 310.5 l S
-0.14 0.19 0.24 rg BT /F1 8.9 Tf 1 0 0 1 51 298.5 Tm (SolidWorks CAD, assemblies, Flow Simulation, static stress analysis, dimensioned drawings, FDM 3D printing,) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.9 Tf 1 0 0 1 51 286.5 Tm (mechanical prototyping, tolerances, calipers, shop fabrication, Excel, MATLAB, oscilloscopes / signal) Tj ET
-0.14 0.19 0.24 rg BT /F1 8.9 Tf 1 0 0 1 51 274.5 Tm (generators \(coursework\), introductory C++) Tj ET
-0.08 0.25 0.41 rg BT /F2 10.3 Tf 1 0 0 1 51 253.5 Tm (LEADERSHIP AND RECOGNITION) Tj ET
-0.72 0.8 0.85 RG 0.7 w 51 248.5 m 561 248.5 l S
-0.14 0.19 0.24 rg BT /F1 8.9 Tf 1 0 0 1 51 236.5 Tm (Treasurer, CMU Biking Club \(2026-present\) | President's List \(3 semesters\) | Provost's List \(Spring 2026\)) Tj ET
+BT /F2 14.80 Tf 1 0 0 1 50.0 747.0 Tm (KAMERON SCHAD) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 50.0 729.0 Tm (Monument, CO) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 50.0 715.5 Tm (719-200-5645 | kameronschad6@gmail.com | linkedin.com/in/kameronschad | kameronschad.github.io) Tj ET
+BT /F2 11.20 Tf 1 0 0 1 50.0 680.0 Tm (EDUCATION) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 659.0 Tm (Bachelor of Science in Mechanical Engineering) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 520.4 659.0 Tm (May 2028) Tj ET
+BT /F1 10.40 Tf 1 0 0 1 68.0 644.0 Tm (University of Colorado Boulder) Tj ET
+BT /F1 10.40 Tf 1 0 0 1 68.0 631.4 Tm (Engineering Partnership at Colorado Mesa University | GPA 4.0) Tj ET
+BT /F2 11.20 Tf 1 0 0 1 50.0 608.8 Tm (PROJECTS) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 587.8 Tm (Rocket Nose Cone Aerodynamics) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 202.6 587.8 Tm ( | MCEN 3021 Fluid Mechanics) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 521.0 587.8 Tm (Fall 2026) Tj ET
+61 577 m 62.8 577 62.8 575.0999999999999 61 575.0999999999999 c 59.2 575.0999999999999 59.2 577 61 577 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 572.8 Tm (Designed all 8 interchangeable rocket nose geometries in SolidWorks and independently performed external-flow) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 560.4 Tm (CFD simulations) Tj ET
+61 552.2 m 62.8 552.2 62.8 550.3 61 550.3 c 59.2 550.3 59.2 552.2 61 552.2 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 548.0 Tm (Collected and analyzed wind-tunnel drag data at 20-120 mph in Excel; compared measured and CFD results and) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 535.6 Tm (authored the team report) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 520.2 Tm (Two-Player Claw Machine) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 172.2 520.2 Tm ( | ENGR 140 First-Year Engineering) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 502.6 520.2 Tm (Jan-May 2025) Tj ET
+61 509.40000000000003 m 62.8 509.40000000000003 62.8 507.50000000000006 61 507.50000000000006 c 59.2 507.50000000000006 59.2 509.40000000000003 61 509.40000000000003 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 505.2 Tm (Proposed CoreXY-style hand-crank motion system and modeled 30+ mechanical components in SolidWorks for a) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 492.8 Tm (working claw machine) Tj ET
+61 484.6000000000001 m 62.8 484.6000000000001 62.8 482.7000000000001 61 482.7000000000001 c 59.2 482.7000000000001 59.2 484.6000000000001 61 484.6000000000001 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 480.4 Tm (Refined pneumatic claw through 5+ iterations, created dimensioned 2D drawings and STEP files, and contributed) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 468.0 Tm (to 70+ page manual) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 452.6 Tm (Helmet Light Mount) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 137.1 452.6 Tm ( | Independent Mechanical Design) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 541.2 452.6 Tm (2026) Tj ET
+61 441.8000000000001 m 62.8 441.8000000000001 62.8 439.90000000000015 61 439.90000000000015 c 59.2 439.90000000000015 59.2 441.8000000000001 61 441.8000000000001 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 437.6 Tm (Designed removable helmet-light mount in SolidWorks and evaluated snap-fit retention tab with repeated) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 425.2 Tm (prototypes and static stress simulations) Tj ET
+61 417.00000000000017 m 62.8 417.00000000000017 62.8 415.1000000000002 61 415.1000000000002 c 59.2 415.1000000000002 59.2 417.00000000000017 61 417.00000000000017 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 412.8 Tm (Diagnosed fractures after 1-2 uses, tested PLA and PETG-CF, and improved durability by changing the print) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 400.4 Tm (orientation to about 45 degrees) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 385.0 Tm (Confidential Client-Sponsored Design) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 223.1 385.0 Tm ( | ENGR 495 Independent Study) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 501.1 385.0 Tm (Feb-May 2026) Tj ET
+61 374.2000000000002 m 62.8 374.2000000000002 62.8 372.30000000000024 61 372.30000000000024 c 59.2 372.30000000000024 59.2 374.2000000000002 61 374.2000000000002 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 370.0 Tm (Led the mechanical CAD work for a four-part enclosure within a four-person multidisciplinary engineering team) Tj ET
+61 361.80000000000024 m 62.8 361.80000000000024 62.8 359.90000000000026 61 359.90000000000026 c 59.2 359.90000000000026 59.2 361.80000000000024 61 361.80000000000024 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 357.6 Tm (Measured 8 components with calipers, refined fit and mounting features, and presented team results at a student) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 345.2 Tm (showcase) Tj ET
+BT /F2 11.20 Tf 1 0 0 1 50.0 323.8 Tm (EXPERIENCE) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 302.8 Tm (Stagehand) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 97.4 302.8 Tm ( | Oak View Group, Grand Junction, CO) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 484.8 302.8 Tm (Nov 2025-Present) Tj ET
+61 292.0000000000003 m 62.8 292.0000000000003 62.8 290.1000000000003 61 290.1000000000003 c 59.2 290.1000000000003 59.2 292.0000000000003 61 292.0000000000003 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 287.8 Tm (Support setup and teardown of touring live productions, handling large or fragile equipment while following) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 275.4 Tm (technical and safety directions) Tj ET
+61 267.20000000000033 m 62.8 267.20000000000033 62.8 265.30000000000035 61 265.30000000000035 c 59.2 265.30000000000035 59.2 267.20000000000033 61 267.20000000000033 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 263.0 Tm (Coordinate with crews of 10+ to move and load production equipment across up to four semi-trailers) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 247.6 Tm (Scene Shop Technician) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 157.7 247.6 Tm ( | Colorado Mesa University, Grand Junction, CO) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 478.3 247.6 Tm (Sep 2024-May 2026) Tj ET
+61 236.80000000000032 m 62.8 236.80000000000032 62.8 234.90000000000035 61 234.90000000000035 c 59.2 234.90000000000035 59.2 236.80000000000032 61 236.80000000000032 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 232.6 Tm (Independently designed and built an 18 ft miter-saw workstation with storage for stable cutting of 16+ ft lumber) Tj ET
+61 224.40000000000032 m 62.8 224.40000000000032 62.8 222.50000000000034 61 222.50000000000034 c 59.2 222.50000000000034 59.2 224.40000000000032 61 224.40000000000032 c f
+BT /F1 10.20 Tf 1 0 0 1 70.0 220.2 Tm (Led construction of four mobile 4 ft x 8 ft worktables and supported coworkers with fabrication tools and safe) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 70.0 207.8 Tm (practices) Tj ET
+BT /F2 11.20 Tf 1 0 0 1 50.0 186.4 Tm (ACTIVITIES AND AWARDS) Tj ET
+BT /F2 10.50 Tf 1 0 0 1 50.0 168.4 Tm (Treasurer) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 99.8 168.4 Tm ( | CMU Biking Club) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 484.8 168.4 Tm (Sep 2026-Present) Tj ET
+BT /F1 10.50 Tf 1 0 0 1 50.0 155.4 Tm (President's List \(3 semesters\)) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 478.0 155.4 Tm (Fall 2024-Fall 2025) Tj ET
+BT /F1 10.50 Tf 1 0 0 1 50.0 142.4 Tm (Provost's List) Tj ET
+BT /F1 10.30 Tf 1 0 0 1 509.1 142.4 Tm (Spring 2026) Tj ET
+BT /F2 10.40 Tf 1 0 0 1 50.0 126.4 Tm (Technical Skills: ) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 129.9 126.4 Tm (SolidWorks \(CAD, assemblies, 2D drawings, Flow Simulation, static FEA\), FDM 3D printing, fits) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 50.0 114.0 Tm (and tolerances, calipers, shop fabrication, MATLAB, Excel, oscilloscopes and signal generators \(coursework\),) Tj ET
+BT /F1 10.20 Tf 1 0 0 1 50.0 101.6 Tm (introductory C++, OSHA 10-Hour) Tj ET
 endstream
 endobj
 xref
@@ -67,10 +99,10 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000251 00000 n 
-0000000321 00000 n 
-0000000396 00000 n 
+0000000323 00000 n 
+0000000394 00000 n 
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-5119
+7763
 %%EOF

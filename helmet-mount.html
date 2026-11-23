@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Independent SolidWorks design, finite-element stress studies, and FDM print-orientation iteration for a custom helmet-light adapter.">
+    <meta name="theme-color" content="#080d16">
+    <title>Helmet Light Mount | Kameron Schad - Mechanical Engineering</title>
+    <link rel="stylesheet" href="../style.css?v=7">
+    <script defer src="../site.js?v=7"></script>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <header class="site-header">
+        <nav class="nav-shell wrap" aria-label="Main navigation">
+            <a class="brand" href="../index.html" aria-label="Kameron Schad - Home">
+                <span class="brand-square">K<span class="brand-accent">.</span></span>
+                <span class="brand-name">Kameron Schad<small>MECHANICAL ENGINEERING</small></span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../projects.html" class="active" aria-current="page">Projects</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+    <main id="main">
+<section class="case-hero wrap">
+  <a class="back-link" href="../projects.html">← All projects</a>
+  <p class="eyebrow">PERSONAL PROJECT / 2026</p><h1>Helmet Light Mount</h1><p>A removable adapter that connects a bike light to the existing GoPro-style mount on my helmet. The small snap-fit retention tab became a lesson in stress concentrations and FDM print orientation.</p>
+</section>
+<div class="wrap case-meta"><span><strong>MY ROLE</strong>Independent design, simulation, and testing</span><span><strong>TOOLS</strong>SolidWorks, static FEA, FDM 3D printing</span><span><strong>STATUS</strong>Functioning prototype - further life testing not documented</span></div>
+<div class="wrap case-hero-figure"><a href="../assets/helmet-hero.webp" data-lightbox data-caption="Helmet Light Mount - design overview"><img src="../assets/helmet-hero.webp" alt="CAD overview of Helmet Light Mount" fetchpriority="high"></a><p>Click the image to view at full size.</p></div><section class="wrap case-proof-strip reveal"><div><strong>1-2 uses</strong><span>Initial tab life before fracture</span></div><div><strong>45°</strong><span>Revised print orientation</span></div><div><strong>FEA + testing</strong><span>Simulation informed physical iteration</span></div></section><div class="wrap case-content"><section class="case-block reveal"><span class="eyebrow">01 / DESIGN REQUIREMENTS</span><h2>Make existing hardware work together</h2><p>The bike light was originally designed to clip into a handlebar mount. I wanted a compact adapter that recreated the light's detachable interface on top and attached to the GoPro-compatible helmet mount underneath. The flexible retention tab needed to snap into place while still allowing the light to be removed.</p></section><section class="case-block reveal"><span class="eyebrow">02 / INITIAL PROTOTYPES</span><h2>The geometry worked, but the tab broke</h2><p>I modeled the adapter in SolidWorks and printed several prototypes. The initial retention tab could fail after one or two attachment cycles because the force needed to engage it was close to the force that caused it to fracture. I corrected fit and tolerance issues first, then tried switching from PLA to PETG-CF. The material change alone did not solve the problem.</p></section><section class="case-block reveal"><span class="eyebrow">03 / ANALYSIS</span><h2>Find the load path and stress concentrations</h2><p>I ran multiple SolidWorks static stress studies, examining the load applied to the tab and stress concentrations near its root and surrounding geometry. The studies helped me identify geometries worth investigating and possible local stress raisers. They were not a calibrated model of FDM layer adhesion, so physical testing remained essential.</p></section><section class="case-block reveal"><span class="eyebrow">04 / ITERATION</span><h2>Change the print orientation, not the entire design</h2><p>Originally, I printed the part vertically to favor the GoPro mounting prongs. However, that choice left the flexible tab vulnerable to fracture along a layer boundary. After geometric changes and material experiments produced limited improvement, I printed the existing design at approximately 45 degrees to change the layer orientation relative to the bending load.</p></section><section class="case-block reveal"><span class="eyebrow">05 / OUTCOME</span><h2>Substantially stronger in everyday use</h2><p>The angled print was much more durable in my informal physical tests and retained the quick-release function. I have not documented controlled force-to-failure or fatigue testing, so I do not claim a verified strength multiplier. The key lesson was that additive manufacturing orientation is part of mechanical design, especially for small, flexible features.</p></section></div><section class="wrap case-media-heading"><div class="section-head"><div><p class="eyebrow">CAD / SIMULATION GALLERY</p><h2>Geometry and stress investigation.</h2></div></div><p class="section-deck">Original SolidWorks captures. Color plots are simulation results with assumed material properties and boundary conditions, not experimentally verified strength measurements.</p></section><div class="wrap case-gallery"><div class="gallery-grid">
+<figure class="gallery-item reveal"><a href="../assets/helmet-geometry.webp" data-lightbox data-caption="CAD view: quick-release interface above and GoPro-compatible prongs below"><img src="../assets/helmet-geometry.webp" alt="Side and top isometric geometry of the original helmet light mount" loading="lazy"></a><figcaption>CAD view: quick-release interface above and GoPro-compatible prongs below</figcaption></figure>
+<figure class="gallery-item reveal"><a href="../assets/helmet-tab.webp" data-lightbox data-caption="CAD profile: thin flexible tongue and the tab-root region"><img src="../assets/helmet-tab.webp" alt="Side view of the flexible snap-fit tongue" loading="lazy"></a><figcaption>CAD profile: thin flexible tongue and the tab-root region</figcaption></figure>
+<figure class="gallery-item reveal"><a href="../assets/helmet-stress-side.webp" data-lightbox data-caption="Static study: side view of load application and stress distribution"><img src="../assets/helmet-stress-side.webp" alt="SolidWorks von Mises stress plot of helmet mount under retention-tab force" loading="lazy"></a><figcaption>Static study: side view of load application and stress distribution</figcaption></figure>
+<figure class="gallery-item reveal"><a href="../assets/helmet-stress-iso.webp" data-lightbox data-caption="Static study: isometric view showing the stressed tab geometry"><img src="../assets/helmet-stress-iso.webp" alt="Isometric SolidWorks stress simulation of retention tab" loading="lazy"></a><figcaption>Static study: isometric view showing the stressed tab geometry</figcaption></figure>
+<figure class="gallery-item reveal"><a href="../assets/helmet-stress-detail.webp" data-lightbox data-caption="Stress-detail crop: local concentrations near the tab root"><img src="../assets/helmet-stress-detail.webp" alt="Close-up stress concentration from SolidWorks static stress plot" loading="lazy"></a><figcaption>Stress-detail crop: local concentrations near the tab root</figcaption></figure>
+</div></div>
+<section class="wrap case-end-note"><h2>What's still missing?</h2><p>Photographs of the finished print, failed tabs, helmet installation, and a repeatable attachment-cycle test. Those would make the physical validation stronger than the screenshots alone.</p><a class="text-link" href="../projects.html">Explore other projects <span aria-hidden="true">↗</span></a></section>
+    </main>
+    <footer class="site-footer">
+        <div class="wrap footer-content">
+            <p>&copy; 2026 Kameron Schad <span class="dot">/</span> Mechanical Engineering</p>
+            <div>
+                <a href="mailto:kameronschad6@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/kameronschad/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/KameronSchad" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <dialog class="image-lightbox" id="image-lightbox" aria-label="Expanded project image">
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close image">Close &times;</button>
+        <img alt="" data-lightbox-image>
+        <p data-lightbox-caption></p>
+    </dialog>
+</body>
+</html>

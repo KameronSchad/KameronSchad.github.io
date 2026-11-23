@@ -4,8 +4,8 @@
 <rect width="1020" height="735" rx="18" fill="#0d1b30"/>
 <text x="40" y="52" fill="#ffffff" font-family="Arial,sans-serif" font-size="27" font-weight="bold">Nose cone drag coefficient: physical test vs CFD</text>
 <text x="42" y="79" fill="#9cb5d0" font-size="16" font-family="Arial,sans-serif">Eight 3D-printed geometries on one rocket body | November 2026</text>
-<rect x="44" y="94" width="14" height="13" rx="3" fill="#49d3c6"/><text x="66" y="106" fill="#b9ccdf" font-size="16" font-family="Arial,sans-serif">Wind-tunnel fitted C&#x2091;</text>
-<rect x="330" y="94" width="14" height="13" rx="3" fill="#71a9ff"/><text x="352" y="106" fill="#b9ccdf" font-size="16" font-family="Arial,sans-serif">Mean full-body CFD C&#x2091;</text>
+<rect x="44" y="94" width="14" height="13" rx="3" fill="#49d3c6"/><text x="66" y="106" fill="#b9ccdf" font-size="16" font-family="Arial,sans-serif">Wind-tunnel fitted Cd</text>
+<rect x="330" y="94" width="14" height="13" rx="3" fill="#71a9ff"/><text x="352" y="106" fill="#b9ccdf" font-size="16" font-family="Arial,sans-serif">Mean full-body CFD Cd</text>
 <line x1="265" y1="112" x2="265" y2="616" stroke="#31435b" stroke-dasharray="4 6" stroke-width="1"/><text x="265" y="641" text-anchor="middle" fill="#91a9bf" font-size="14" font-family="Arial,sans-serif">0.0</text>
 <line x1="445" y1="112" x2="445" y2="616" stroke="#31435b" stroke-dasharray="4 6" stroke-width="1"/><text x="445" y="641" text-anchor="middle" fill="#91a9bf" font-size="14" font-family="Arial,sans-serif">0.5</text>
 <line x1="625" y1="112" x2="625" y2="616" stroke="#31435b" stroke-dasharray="4 6" stroke-width="1"/><text x="625" y="641" text-anchor="middle" fill="#91a9bf" font-size="14" font-family="Arial,sans-serif">1.0</text>

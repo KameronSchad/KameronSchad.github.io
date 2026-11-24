@@ -443,3 +443,20 @@ body { font-size:15px; line-height:1.62; }
   .about-portrait { max-width:280px; }
   .contact-primary { padding:22px; }
 }
+
+/* Budget evidence and pending source photographs for the claw machine case study. */
+.budget-summary { display:flex; flex-direction:column; justify-content:center; min-height:270px; padding:32px; background:linear-gradient(135deg,#173345,#10202f); border:1px solid #35556a; border-radius:14px; }
+.budget-summary .eyebrow { margin:0 0 6px; }
+.budget-summary>strong { font-size:clamp(3.25rem,7vw,5rem); letter-spacing:-.07em; line-height:1.08; color:#e7faf8; }
+.budget-summary>p { margin:3px 0 0; font-size:.93rem; }
+.budget-summary-divider { border-top:1px solid #35556a; margin:24px 0 16px; }
+.budget-summary>span:not(.eyebrow) { font-size:.68rem; font-weight:800; letter-spacing:.1em; color:var(--accent); }
+.pending-media { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-height:310px; padding:35px; border:2px dashed #507385; border-radius:14px; background:repeating-linear-gradient(135deg,rgba(77,145,171,.035),rgba(77,145,171,.035) 14px,transparent 14px,transparent 28px),#112536; }
+.pending-media-kicker { color:var(--accent); font-size:.66rem; letter-spacing:.12em; font-weight:800; }
+.pending-media strong { font-size:clamp(1.25rem,2vw,1.7rem); line-height:1.25; margin:16px 0 9px; }
+.pending-media p { max-width:420px; margin-bottom:12px; font-size:.92rem; }
+.pending-media small { color:#9cbacc; font-size:.75rem; }
+@media (max-width:640px) {
+  .budget-summary { min-height:220px; padding:25px; }
+  .pending-media { min-height:250px; padding:25px; }
+}

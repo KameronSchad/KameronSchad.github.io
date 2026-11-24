@@ -32,10 +32,14 @@
             slides.forEach((slide, index) => {
                 const dot = document.createElement('button');
                 dot.type = 'button';
-                dot.setAttribute('aria-label', `Show project ${index + 1}`);
+                const label = slide.dataset.tabLabel || slide.querySelector('h3')?.textContent?.trim() || `Project ${index + 1}`;
+                dot.textContent = label;
+                dot.setAttribute('aria-label', `Show ${label}`);
                 dot.addEventListener('click', () => { show(index); start(); });
                 dotsContainer.appendChild(dot);
             });
+            dotsContainer.setAttribute('role', 'group');
+            dotsContainer.setAttribute('aria-label', 'Select featured project');
             const dots = [...dotsContainer.querySelectorAll('button')];
 
             function show(index) {

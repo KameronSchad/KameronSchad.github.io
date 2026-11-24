@@ -55,7 +55,7 @@
             function start() {
                 stop();
                 if (autoplay && !document.hidden) {
-                    interval = window.setInterval(() => show(current + 1), 5000);
+                    interval = window.setInterval(() => show(current + 1), 10000);
                 }
             }
             prev.addEventListener('click', () => { show(current - 1); start(); });

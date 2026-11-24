@@ -1,85 +1,27 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="MATLAB work on numerical modeling of parachute dynamics, discrete Fourier transforms, tensile-test analysis, and iterative solvers." name="description"/>
-<meta content="#080d16" name="theme-color"/>
-<title>Engineering Applications in MATLAB | Kameron Schad - Mechanical Engineering</title>
-<link href="../style.css?v=7" rel="stylesheet"/>
-<script defer="" src="../site.js?v=7"></script>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a1019">
+<meta name="description" content="MATLAB numerical methods examples: parachute dynamics, Fourier analysis, tensile-test calculations and root finding.">
+<title>Computational Methods | Kameron Schad</title>
+<link rel="canonical" href="https://kameronschad.github.io/projects/matlab-methods.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Computational Methods | Kameron Schad"><meta property="og:description" content="MATLAB numerical methods examples: parachute dynamics, Fourier analysis, tensile-test calculations and root finding.">
+<meta property="og:url" content="https://kameronschad.github.io/projects/matlab-methods.html"><meta property="og:image" content="https://kameronschad.github.io/assets/claw-built.webp">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-<nav aria-label="Main navigation" class="nav-shell wrap">
-<a aria-label="Kameron Schad - Home" class="brand" href="../index.html">
-<span class="brand-square">K<span class="brand-accent">.</span></span>
-<span class="brand-name">Kameron Schad<small>MECHANICAL ENGINEERING</small></span>
-</a>
-<div class="nav-links">
-<a href="../index.html">Home</a>
-<a aria-current="page" class="active" href="../projects.html">Projects</a>
-<a href="../about.html">About</a>
-<a href="../contact.html">Contact</a>
-<a class="nav-resume" href="../assets/Kameron_Schad_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-</div>
-</nav>
-</header>
-<main id="main">
-<section class="case-hero wrap"><a class="back-link" href="../projects.html">← All projects</a>
-<p class="eyebrow">COMPUTATIONAL METHODS / FALL 2026</p>
-<h1>Engineering Applications in MATLAB</h1>
-<p>Selected numerical methods assignments applied to materials, dynamics, signal processing, and equation solving. These examples emphasize implementation, numerical interpretation, and the limitations of simplified models.</p></section>
-<div class="wrap case-meta">
-<span><strong>TYPE</strong>Individual computational coursework</span>
-<span><strong>TOOLS</strong>MATLAB, numerical differentiation, integration, DFT, Euler integration</span>
-<span><strong>FOCUS</strong>Engineering interpretation and error checking</span>
-</div>
-<section class="wrap case-proof-strip reveal">
-<div><strong>360.57 m/s</strong><span>High-altitude jump model's maximum speed</span></div>
-<div><strong>4.137 Hz</strong><span>Strong fourth harmonic identified in engine signal</span></div>
-<div><strong>74.09 GPa</strong><span>Estimated aluminum elastic modulus - depends on specimen-width assumption</span></div>
-</section>
-<div class="wrap case-content">
-<section class="case-block reveal"><span class="eyebrow">01 / DYNAMICS SIMULATION</span>
-<h2>Modeling a high-altitude parachute jump</h2>
-<p>Implemented an explicit Euler time-stepping simulation in MATLAB, accounting for altitude-dependent air density and gravity, horizontal wind, aerodynamic drag, and parachute deployment. The simulated maximum speed was 360.57 m/s. The model predicted landing at 406.23 s compared with 553 s observed in the reference footage. That 147-second discrepancy illustrates the limits of a simplified drag-only model, particularly without canopy lift and landing flare.</p>
-<figure class="technical-figure"><a href="../assets/matlab-parachute-dynamics.webp" data-lightbox data-caption="Velocity, aerodynamic drag, and trajectory from the high-altitude parachute MATLAB simulation"><img src="../assets/matlab-parachute-dynamics.webp" loading="lazy" alt="Three MATLAB plots from the parachute dynamics coursework: modeled velocity over time, drag over time, and height versus horizontal distance"></a><figcaption>Original MATLAB output from Lab 9: velocity, drag, and predicted trajectory</figcaption></figure></section>
-<section class="case-block reveal"><span class="eyebrow">02 / SIGNAL PROCESSING</span>
-<h2>Finding frequencies in an engine signal</h2>
-<p>Applied a discrete Fourier transform to an engine signal and identified a fundamental frequency near 1.034 Hz and a stronger fourth harmonic near 4.137 Hz. Used the amplitude spectrum to characterize periodic content beyond the time-domain waveform.</p></section>
-<section class="case-block reveal"><span class="eyebrow">03 / MATERIALS DATA</span>
-<h2>Extracting properties from tensile-test results</h2>
-<p>Converted tensile-test load and elongation data to engineering stress and strain, estimated elastic modulus, and used numerical differentiation and integration to evaluate energy-related material properties. The reported modulus was approximately 74.09 GPa, but it depends on a 12.5 mm specimen width assumed for continuity with an earlier lab. The later lab handout specified 15 mm; therefore the modulus and stress-based quantities should not be treated as independently validated material data.</p>
-<figure class="technical-figure"><a href="../assets/matlab-tensile-stress-strain.webp" data-lightbox data-caption="Lab 7 experimental stress-strain data with elastic fit and 0.2 percent offset"><img src="../assets/matlab-tensile-stress-strain.webp" loading="lazy" alt="Original engineering stress-strain curve with elastic fit and 0.2 percent offset from numerical methods coursework"></a><figcaption>Original MATLAB output from Lab 7: measured stress-strain, elastic fit, and 0.2% offset</figcaption></figure></section>
-<section class="case-block reveal"><span class="eyebrow">04 / NUMERICAL SOLVERS</span>
-<h2>Root finding and iterative linear algebra</h2>
-<p>Implemented bisection for a loan-rate equation, Newton's method for coupled nonlinear equations, and Jacobi and Gauss-Seidel iteration for linear systems. These assignments required choosing starting values, defining stopping criteria, checking convergence, and comparing the numerical result against the governing equations rather than trusting an output without verification.</p></section>
-<section class="case-block reveal"><span class="eyebrow">05 / LESSON</span>
-<h2>A computed answer still needs engineering judgment</h2>
-<p>Across the labs, the central lesson was that numerical precision is not the same as physical accuracy. Model assumptions, units, discretization, measurement uncertainty, and consistency with reference data determine whether a result is meaningful.</p></section>
-</div>
-<section class="wrap case-end-note"><h2>Analysis skills backed by actual assignments</h2>
-<p>These examples summarize completed MATLAB labs and reports. Numerical results are identified as coursework calculations or model predictions, not independently validated product performance.</p>
-<a class="text-link" href="../projects.html">Explore the hardware projects ↗</a></section>
-</main>
-<footer class="site-footer">
-<div class="wrap footer-content">
-<p>© 2026 Kameron Schad <span class="dot">/</span> Mechanical Engineering</p>
-<div>
-<a href="mailto:kameronschad6@gmail.com">Email</a>
-<a href="https://www.linkedin.com/in/kameronschad/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
-<a href="https://github.com/KameronSchad" rel="noopener noreferrer" target="_blank">GitHub</a>
-</div>
-</div>
-</footer>
-<dialog aria-label="Expanded project image" class="image-lightbox" id="image-lightbox">
-<button aria-label="Close image" class="lightbox-close" data-lightbox-close="" type="button">Close ×</button>
-<img alt="" data-lightbox-image=""/>
-<p data-lightbox-caption=""></p>
-</dialog>
-</body>
-</html>
+<link rel="stylesheet" href="../style.css?v=11">
+<script src="../site.js?v=11" defer></script>
+</head><body><a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="shell nav-wrap">
+<a href="../index.html" class="identity" aria-label="Kameron Schad - home"><span class="identity-mark">KS<span>.</span></span><span class="identity-title">KAMERON SCHAD<small>MECHANICAL ENGINEERING</small></span></a>
+<button type="button" class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" data-menu-toggle aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+<nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+<a href="../index.html" >Home</a>
+<a href="../projects.html" aria-current="page">Projects</a>
+<a href="../about.html" >About</a>
+<a href="../contact.html" >Contact</a>
+<a class="nav-resume" href="../assets/Kameron_Schad_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+</nav></div></header>
+<main id="main"><section class="shell case-header"><a class="back-link" href="../projects.html">← All projects</a><p class="eyebrow">COMPUTATIONAL METHODS / FALL 2026</p><h1>Computational Methods</h1><p class="case-deck">Selected MATLAB coursework involving numerical models, experimental data, signal processing, and error checking.</p><div class="case-facts"><div><span>TYPE</span><strong>Individual coursework</strong></div><div><span>TOOLS</span><strong>MATLAB, Excel, numerical methods</strong></div><div><span>FOCUS</span><strong>Model assumptions and results</strong></div></div></section><section class="shell work-section"><div class="work-copy"><p class="eyebrow">01 / DYNAMICS MODELING</p><h2>High-altitude parachute simulation</h2><p>Implemented an explicit Euler simulation with altitude-dependent air density and gravity, drag, horizontal wind, and parachute deployment.</p><p>The model predicted a maximum speed of 360.57 m/s and a landing time of 406.23 s, versus 553 s in reference footage. The difference indicates important missing physics rather than a precise flight prediction.</p></div><div class="work-media"><figure class="media-figure "><a class="image-link" href="../assets/matlab-parachute-dynamics.webp" data-lightbox data-caption="Lab simulation: velocity, drag, and predicted trajectory" aria-label="Open full-size image: MATLAB velocity, drag, and trajectory plots for simulated high-altitude parachute jump"><img src="../assets/matlab-parachute-dynamics.webp" alt="MATLAB velocity, drag, and trajectory plots for simulated high-altitude parachute jump" loading="lazy" decoding="async"></a><figcaption>Lab simulation: velocity, drag, and predicted trajectory</figcaption></figure></div></section><section class="shell work-section work-reverse"><div class="work-copy"><p class="eyebrow">02 / MATERIALS DATA</p><h2>Engineering stress and strain</h2><p>Converted tensile-test load and elongation measurements into engineering stress and strain, estimated elastic modulus, and applied numerical differentiation and integration.</p><p>The reported modulus of approximately 74.09 GPa depended on a 12.5 mm specimen-width assumption. A later lab handout specified 15 mm, so the value is not presented as verified material data.</p></div><div class="work-media"><figure class="media-figure "><a class="image-link" href="../assets/matlab-tensile-stress-strain.webp" data-lightbox data-caption="MATLAB tensile-test analysis with fitted elastic region" aria-label="Open full-size image: Engineering stress-strain curve with elastic fit and offset"><img src="../assets/matlab-tensile-stress-strain.webp" alt="Engineering stress-strain curve with elastic fit and offset" loading="lazy" decoding="async"></a><figcaption>MATLAB tensile-test analysis with fitted elastic region</figcaption></figure></div></section><section class="shell work-section"><div class="work-copy"><p class="eyebrow">03 / SIGNAL ANALYSIS</p><h2>Frequency content and iterative solutions</h2><p>Applied a discrete Fourier transform to an engine signal, identifying a fundamental near 1.034 Hz and a stronger fourth harmonic near 4.137 Hz.</p><p>Implemented bisection, Newton&#x27;s method, Jacobi, and Gauss-Seidel iteration across numerical-methods assignments. Checked convergence and residuals rather than trusting the first computed output.</p></div><div class="work-media"><div class="figure-note"><span>SELECTED METHODS</span><h3>Root finding / Fourier analysis / iteration</h3><p>Class assignments covering numerical convergence, signal interpretation, and model limitations.</p><div class="mini-facts"><span>Euler integration</span><span>DFT</span><span>Jacobi / Gauss-Seidel</span></div></div></div></section><section class="shell outcome-section"><div><p class="eyebrow">TAKEAWAY</p><h2>A numerical result is not the same as a validated physical result.</h2></div><div class="outcome-list"><p>Explicitly accounted for limitations in the parachute and tensile-test models.</p><p>Code and analysis supported by completed course assignments.</p></div></section><section class="shell next-project"><a href="../projects/nose-cone-drag.html"><span>NEXT PROJECT</span><strong>Rocket Nose Cone Aerodynamics</strong><em aria-hidden="true">↗</em></a><a class="simple-link" href="../projects.html">All projects ↗</a></section></main><footer class="site-footer"><div class="shell footer-inner"><div><strong>Kameron Schad</strong><p>Mechanical Engineering · Expected May 2028</p></div><div class="footer-links"><a href="mailto:kameronschad6@gmail.com">Email</a><a href="https://www.linkedin.com/in/kameronschad/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/KameronSchad" target="_blank" rel="noopener noreferrer">GitHub</a><a href="../assets/Kameron_Schad_Resume.pdf">Resume</a></div><p class="copyright">© 2026 Kameron Schad</p></div></footer>
+<dialog class="lightbox" id="lightbox" aria-label="Expanded engineering image"><button class="lightbox-dismiss" type="button" data-lightbox-close aria-label="Close image">Close ×</button><img alt="" data-lightbox-image><p data-lightbox-caption></p></dialog>
+</body></html>

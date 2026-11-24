@@ -1,119 +1,77 @@
-/* Shared site behavior. All content works without JavaScript. */
+/* Progressive enhancement: project filters, carousel, image lightbox, mobile nav. */
 (() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* Reveal cards as they enter the viewport. */
-    if (!reduceMotion && 'IntersectionObserver' in window) {
-        document.documentElement.classList.add('js');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05, rootMargin: '0px 0px 35px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile=document.querySelector('[data-menu-toggle]');
+  const nav=document.getElementById('main-navigation');
+  if(mobile&&nav){
+    mobile.addEventListener('click',()=>{
+      const open=mobile.getAttribute('aria-expanded')!=='true';
+      mobile.setAttribute('aria-expanded',String(open));
+      nav.classList.toggle('is-open',open);
+    });
+    nav.addEventListener('click',e=>{
+      if(e.target.closest('a')){mobile.setAttribute('aria-expanded','false');nav.classList.remove('is-open');}
+    });
+  }
+  const filterPanel=document.querySelector('[data-filters]');
+  if(filterPanel){
+    const buttons=[...filterPanel.querySelectorAll('[data-filter]')];
+    const cards=[...document.querySelectorAll('.project-card[data-category]')];
+    const empty=document.querySelector('[data-filter-empty]');
+    const apply=name=>{
+      let count=0;
+      cards.forEach(card=>{const visible=name==='all'||card.dataset.category===name;card.hidden=!visible;if(visible)count++;});
+      buttons.forEach(b=>{const active=b.dataset.filter===name;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+      if(empty)empty.hidden=count>0;
+    };
+    buttons.forEach(b=>b.addEventListener('click',()=>apply(b.dataset.filter)));
+  }
+  const carousel=document.querySelector('[data-carousel]');
+  if(carousel){
+    const slides=[...carousel.querySelectorAll('[data-feature-slide]')];
+    const tabs=document.querySelector('[data-carousel-tabs]');
+    const prev=document.querySelector('[data-carousel-prev]');
+    const next=document.querySelector('[data-carousel-next]');
+    const pause=document.querySelector('[data-carousel-pause]');
+    let active=0;let timer=null;let playing=!reduceMotion;
+    if(slides.length&&tabs){
+      slides.forEach((slide,i)=>{
+        const button=document.createElement('button');button.type='button';
+        button.textContent=slide.dataset.title||`Project ${i+1}`;
+        button.setAttribute('aria-label',`Show ${slide.dataset.title||'project '+(i+1)}`);
+        button.addEventListener('click',()=>{show(i);start();});tabs.appendChild(button);
+      });
+      const dots=[...tabs.querySelectorAll('button')];
+      const show=i=>{
+        active=(i+slides.length)%slides.length;
+        slides.forEach((s,j)=>{s.hidden=j!==active;s.setAttribute('aria-hidden',String(j!==active));});
+        dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===active)));
+      };
+      const stop=()=>{clearInterval(timer);timer=null;};
+      const start=()=>{stop();if(playing&&!document.hidden)timer=setInterval(()=>show(active+1),10000);};
+      prev?.addEventListener('click',()=>{show(active-1);start();});
+      next?.addEventListener('click',()=>{show(active+1);start();});
+      const setPause=()=>{if(pause){pause.textContent=playing?'Pause':'Play';pause.setAttribute('aria-label',playing?'Pause slideshow':'Play slideshow');pause.setAttribute('aria-pressed',String(!playing));}};
+      pause?.addEventListener('click',()=>{playing=!playing;setPause();start();});
+      document.addEventListener('visibilitychange',start);
+      carousel.addEventListener('focusin',stop);
+      carousel.addEventListener('focusout',e=>{if(!carousel.contains(e.relatedTarget))start();});
+      show(0);setPause();start();
     }
-
-    /* Accessible, automatically advancing carousel on the homepage. */
-    const carousel = document.querySelector('[data-carousel]');
-    if (carousel) {
-        const slides = [...carousel.querySelectorAll('[data-feature-slide]')];
-        const dotsContainer = document.querySelector('[data-carousel-dots]');
-        const prev = document.querySelector('[data-carousel-prev]');
-        const next = document.querySelector('[data-carousel-next]');
-        const pauseToggle = document.querySelector('[data-carousel-toggle]');
-        let current = 0;
-        let interval;
-        let autoplay = !reduceMotion;
-
-        if (slides.length > 0 && dotsContainer && prev && next) {
-            slides.forEach((slide, index) => {
-                const dot = document.createElement('button');
-                dot.type = 'button';
-                const label = slide.dataset.tabLabel || slide.querySelector('h3')?.textContent?.trim() || `Project ${index + 1}`;
-                dot.textContent = label;
-                dot.setAttribute('aria-label', `Show ${label}`);
-                dot.addEventListener('click', () => { show(index); start(); });
-                dotsContainer.appendChild(dot);
-            });
-            dotsContainer.setAttribute('role', 'group');
-            dotsContainer.setAttribute('aria-label', 'Select featured project');
-            const dots = [...dotsContainer.querySelectorAll('button')];
-
-            function show(index) {
-                current = (index + slides.length) % slides.length;
-                slides.forEach((slide, i) => {
-                    const active = i === current;
-                    slide.classList.toggle('is-active', active);
-                    slide.hidden = !active;
-                    slide.setAttribute('aria-hidden', String(!active));
-                });
-                dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
-            }
-            function stop() {
-                if (interval) clearInterval(interval);
-                interval = undefined;
-            }
-            function start() {
-                stop();
-                if (autoplay && !document.hidden) {
-                    interval = window.setInterval(() => show(current + 1), 10000);
-                }
-            }
-            prev.addEventListener('click', () => { show(current - 1); start(); });
-            next.addEventListener('click', () => { show(current + 1); start(); });
-            if (pauseToggle) {
-                function syncPauseToggle() {
-                    pauseToggle.textContent = autoplay ? 'Pause' : 'Play';
-                    pauseToggle.setAttribute('aria-label', autoplay ? 'Pause project slideshow' : 'Play project slideshow');
-                    pauseToggle.setAttribute('aria-pressed', String(!autoplay));
-                }
-                pauseToggle.addEventListener('click', () => {
-                    autoplay = !autoplay;
-                    syncPauseToggle();
-                    if (autoplay) start(); else stop();
-                });
-                syncPauseToggle();
-            }
-            // Do not stop autoplay just because the pointer rests over a project.
-            // The explicit Pause button and reduced-motion preference provide control.
-            carousel.addEventListener('focusin', stop);
-            carousel.addEventListener('focusout', event => {
-                if (!carousel.contains(event.relatedTarget)) start();
-            });
-            document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
-
-            // Enable CSS carousel behavior after initial slide visibility is set.
-            show(0);
-            carousel.classList.add('enhanced');
-            document.body.classList.add('carousel-ready');
-            start();
-        }
-    }
-
-    /* Click to expand uploaded CAD and stress images. Standard image links
-       remain available as the fallback when <dialog> is unsupported. */
-    const lightbox = document.querySelector('#image-lightbox');
-    if (lightbox && typeof lightbox.showModal === 'function') {
-        const picture = lightbox.querySelector('[data-lightbox-image]');
-        const caption = lightbox.querySelector('[data-lightbox-caption]');
-        let origin;
-        document.querySelectorAll('[data-lightbox]').forEach(anchor => {
-            anchor.addEventListener('click', event => {
-                event.preventDefault();
-                origin = anchor;
-                picture.src = anchor.href;
-                picture.alt = anchor.querySelector('img')?.alt || 'Expanded engineering image';
-                caption.textContent = anchor.dataset.caption || picture.alt;
-                lightbox.showModal();
-            });
-        });
-        const close = () => { lightbox.close(); origin?.focus(); };
-        lightbox.querySelector('[data-lightbox-close]')?.addEventListener('click', close);
-        lightbox.addEventListener('click', event => {
-            if (event.target === lightbox) close();
-        });
-    }
+  }
+  const dialog=document.getElementById('lightbox');
+  if(dialog&&typeof dialog.showModal==='function'){
+    const photo=dialog.querySelector('[data-lightbox-image]');
+    const caption=dialog.querySelector('[data-lightbox-caption]');
+    let origin;
+    document.querySelectorAll('[data-lightbox]').forEach(a=>a.addEventListener('click',e=>{
+      e.preventDefault();origin=a;photo.src=a.href;
+      photo.alt=a.querySelector('img')?.alt||'Expanded project image';
+      caption.textContent=a.dataset.caption||photo.alt;dialog.showModal();
+    }));
+    const close=()=>{dialog.close();photo.removeAttribute('src');origin?.focus();};
+    dialog.querySelector('[data-lightbox-close]')?.addEventListener('click',close);
+    dialog.addEventListener('click',e=>{if(e.target===dialog)close();});
+    dialog.addEventListener('close',()=>{photo.removeAttribute('src');origin?.focus();});
+  }
 })();

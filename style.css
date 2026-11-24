@@ -562,3 +562,9 @@ html, body {
  .cad-model-caption {align-items:start; flex-direction:column;}
  .carousel-dots button,.carousel-dots button[aria-current="true"] {font-size:.71rem;padding:6px 9px;}
 }
+
+/* Verified coursework plots, with captions and click-to-enlarge */
+.technical-figure { margin:24px 0 12px; background:#0f1d2f; border:1px solid #304b64; border-radius:14px; overflow:hidden; }
+.technical-figure a { display:block; background:#f4f6f9; }
+.technical-figure img { display:block; width:100%; height:auto; max-height:460px; object-fit:contain; }
+.technical-figure figcaption { color:#afc0d4; font-size:.84rem; padding:12px 17px; }

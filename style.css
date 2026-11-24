@@ -460,3 +460,13 @@ body { font-size:15px; line-height:1.62; }
   .budget-summary { min-height:220px; padding:25px; }
   .pending-media { min-height:250px; padding:25px; }
 }
+
+/* Documented pneumatic sequence on the claw-machine case study. */
+.claw-operation-steps { background:#142739; border:1px solid #36526b; border-radius:14px; padding:27px 31px; display:grid; gap:0; }
+.claw-operation-steps>div { padding:15px 0 16px; border-bottom:1px solid #355069; }
+.claw-operation-steps>div:first-child { padding-top:0; }
+.claw-operation-steps>div:last-child { border-bottom:0; padding-bottom:0; }
+.claw-operation-steps span { display:block; color:var(--accent); font-size:.68rem; letter-spacing:.1em; font-weight:800; margin-bottom:4px; }
+.claw-operation-steps strong { font-size:1.07rem; font-weight:750; line-height:1.32; }
+.claw-operation-steps p { margin:5px 0 0; font-size:.9rem; line-height:1.55; }
+@media(max-width:640px) { .claw-operation-steps { padding:22px; } }

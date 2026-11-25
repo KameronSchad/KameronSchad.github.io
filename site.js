@@ -19,9 +19,10 @@
     const buttons=[...filterPanel.querySelectorAll('[data-filter]')];
     const cards=[...document.querySelectorAll('.project-card[data-category]')];
     const empty=document.querySelector('[data-filter-empty]');
+    const search=document.querySelector('[data-project-search]');
     const apply=name=>{
       let count=0;
-      cards.forEach(card=>{const visible=name==='all'||card.dataset.category===name;card.hidden=!visible;if(visible)count++;});
+      cards.forEach(card=>{const query=(search?.value||'').toLowerCase().trim().split(/\s+/).filter(Boolean);const haystack=((card.dataset.search||'')+' '+card.textContent).toLowerCase();const visible=(name==='all'||card.dataset.category===name)&&query.every(word=>haystack.includes(word));card.hidden=!visible;if(visible)count++;});
       buttons.forEach(b=>{const active=b.dataset.filter===name;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
       if(empty)empty.hidden=count>0;
     };
@@ -33,6 +34,7 @@
     buttons.forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.filter);history.replaceState(null,'',b.dataset.filter==='all'?location.pathname:location.pathname+'#'+b.dataset.filter);}));
     function fromHash(){const name=location.hash.slice(1);filter(buttons.some(b=>b.dataset.filter===name)?name:'all');}
     sorter?.addEventListener('change',()=>{const mode=sorter.value;const sorted=[...cards].sort((a,b)=>{const rank=Number(a.dataset.rank)-Number(b.dataset.rank);return mode==='featured'?rank:(mode==='newest'?Number(b.dataset.year)-Number(a.dataset.year):Number(a.dataset.year)-Number(b.dataset.year))||rank;});sorted.forEach(c=>grid?.appendChild(c));filter(current);});
+    search?.addEventListener('input',()=>filter(current));
     fromHash();window.addEventListener('hashchange',fromHash);
   }
   const carousel=document.querySelector('[data-carousel]');
@@ -86,3 +88,6 @@
     dialog.addEventListener('close',()=>{photo.removeAttribute('src');origin?.focus();});
   }
 })();
+
+/* Milestones: hover/focus previews on desktop, explicit disclosure on touch. */
+(()=>{const rows=[...document.querySelectorAll('[data-milestone]')];if(!rows.length)return;const close= row=>{row.classList.remove('preview-open');row.querySelector('.milestone-toggle').setAttribute('aria-expanded','false');};for(const row of rows){const toggle=row.querySelector('.milestone-toggle');toggle.addEventListener('click',()=>{const open=!row.classList.contains('preview-open');rows.forEach(close);if(open){row.classList.add('preview-open');toggle.setAttribute('aria-expanded','true');}});row.addEventListener('keydown',e=>{if(e.key==='Escape'){close(row);row.querySelector('.milestone-dot').focus();row.classList.add('preview-dismissed');}});row.addEventListener('pointerenter',()=>row.classList.remove('preview-dismissed'));row.addEventListener('focusin',e=>{if(!row.contains(e.relatedTarget))row.classList.remove('preview-dismissed');});}document.addEventListener('click',e=>{if(!e.target.closest('[data-milestone]'))rows.forEach(close);});})();

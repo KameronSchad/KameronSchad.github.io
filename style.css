@@ -473,3 +473,17 @@ body { font-size:15px; line-height:1.62; }
 .identity-title small { font-size:.64rem; }
 @media(max-width:800px) { .cad-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:540px) { .cad-gallery { grid-template-columns:1fr; } .cad-gallery-item>a { height:210px; } .cad-section { padding:28px 0 35px; } }
+
+/* Compact, consistent source-document cards for each engineering case study. */
+.project-resources { padding:34px 0 45px; border-top:1px solid #304558; }
+.project-resources h2 { font-size:clamp(1.5rem,2.25vw,2.05rem); margin:0 0 8px; }
+.project-resources>div>p:not(.eyebrow) { max-width:760px; line-height:1.6; margin:0 0 17px; font-size:.94rem; }
+.resource-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.resource-links>a { position:relative; display:flex; flex-direction:column; min-height:116px; padding:19px 50px 17px 20px; background:#142535; border:1px solid #355069; border-radius:12px; transition:border-color .15s,background .15s; }
+.resource-links>a:hover { background:#1a3245; border-color:#6fdfd9; }
+.resource-links>a>span { color:var(--accent); font-size:.72rem; font-weight:750; letter-spacing:.09em; }
+.resource-links>a>strong { font-size:1.09rem; letter-spacing:-.01em; margin-top:3px; }
+.resource-links>a>small { font-size:.81rem; color:#acc0d0; line-height:1.45; margin-top:3px; }
+.resource-links>a>em { position:absolute; right:18px; top:20px; font-style:normal; font-size:1.1rem; }
+.resource-note { max-width:850px; margin:13px 0 0; font-size:.81rem; line-height:1.55; }
+@media(max-width:660px) { .resource-links { grid-template-columns:1fr; } .project-resources { padding:25px 0 35px; } }

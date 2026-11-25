@@ -498,3 +498,15 @@ body { font-size:15px; line-height:1.62; }
 .life-gallery .media-figure:first-child img { object-position:center 80%; }
 @media(max-width:700px) { .life-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); } .life-section { padding-bottom:45px; } }
 @media(max-width:450px) { .life-gallery { grid-template-columns:1fr; } .life-gallery .media-figure img { max-height:440px; object-fit:contain; } }
+
+/* Expandable MATLAB source archive */
+.code-archive { margin-top:20px; padding:15px 18px; border:1px solid #355069; border-radius:12px; background:#111e2b; }
+.code-archive summary,.code-group summary { cursor:pointer; padding:8px 0; }
+.code-archive>summary { font-weight:700; color:var(--accent); }
+.code-group { border-top:1px solid #304558; padding:6px 0; }
+.code-group summary strong { font-size:.92rem; } .code-group summary span { color:#acc0d0; font-size:.78rem; margin-left:12px; }
+.code-group ul { list-style:none; padding:0 0 0 16px; margin:0; }
+.code-group li { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:7px 0; font-size:.87rem; }
+.code-group li a { color:var(--accent); } .code-group .code-download { color:#acc0d0; } .code-note { font-size:.82rem; color:#acc0d0; margin:14px 0 0; }
+.rocket-model-controls { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:12px 0; }
+.rocket-model-controls select { color:#e5eef5; background:#142535; border:1px solid #355069; border-radius:7px; padding:9px 12px; font:inherit; }

@@ -9,6 +9,7 @@
       mobile.setAttribute('aria-expanded',String(open));
       nav.classList.toggle('is-open',open);
     });
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobile.getAttribute('aria-expanded')==='true'){mobile.setAttribute('aria-expanded','false');nav.classList.remove('is-open');mobile.focus();}});
     nav.addEventListener('click',e=>{
       if(e.target.closest('a')){mobile.setAttribute('aria-expanded','false');nav.classList.remove('is-open');}
     });

@@ -20,3 +20,12 @@ body{background:radial-gradient(ellipse at 85% -8%,#20374688 0,transparent 34rem
 
 /* Compact navigation and project cards on small tablets. */
 @media(max-width:760px){.menu-toggle{display:flex}.main-nav{display:none;position:absolute;left:0;right:0;top:100%;padding:16px 18px;background:#101b27;border-bottom:1px solid #364a59;box-shadow:0 14px 22px #0006}.main-nav.is-open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.main-nav a{display:block;padding:10px 12px;border-radius:7px}.main-nav>a:not(.nav-resume):after{display:none}.main-nav a:hover,.main-nav a[aria-current="page"]{background:#82d8d213}.main-nav .nav-resume{text-align:center;grid-column:1/-1}.case-period{flex-wrap:wrap}.profile-visual{justify-self:center}}@media(max-width:640px){.projects-grid.home-projects,.directory-grid{grid-template-columns:1fr}.home-projects>.project-card:last-child{grid-column:auto;display:flex}.home-projects>.project-card:last-child .project-card-art{min-height:0;aspect-ratio:16/10;height:auto}.secondary-work{grid-template-columns:1fr}.section-header{flex-direction:column}.case-toc-inner{width:calc(100% - 24px)}}
+
+/* Portrait framing and native same-origin page transitions. */
+.profile-visual{max-width:465px}.profile-frame img{aspect-ratio:4/5.35;object-position:50% 57%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}.profile-frame:hover img{transform:scale(1.025)}
+@media(max-width:760px){.profile-visual{max-width:400px;width:100%;justify-self:center}.profile-frame img{aspect-ratio:4/5.15}.portfolio-hero h1 br{display:block}.portfolio-hero h1{font-size:clamp(3.5rem,12vw,5.6rem);line-height:.94}}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:portfolio-exit 120ms ease both}
+::view-transition-new(root){animation:portfolio-enter 220ms cubic-bezier(.2,.7,.2,1) both}
+@keyframes portfolio-exit{to{opacity:0;transform:translateY(-4px)}}@keyframes portfolio-enter{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}::view-transition-old(root),::view-transition-new(root){animation:none!important}.profile-frame:hover img{transform:none}}

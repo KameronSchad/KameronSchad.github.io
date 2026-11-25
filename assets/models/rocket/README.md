@@ -1,3 +1,3 @@
-# Rocket assemblies
+# Rocket CAD comparison
 
-Eight GLB meshes tessellated directly from the original SolidWorks STEP exports. Each contains the common finned body and interchangeable nose; millimetres were converted to metres and the assembly origin translated to the common body base. Colors distinguish components for display. No profile was reconstructed. The manifest lists the available models.
+The `.step` files are original SolidWorks assembly exports. The `.glb` files are neutral-gray display meshes tessellated from those exports using Open CASCADE, with finer angular and linear deflection on the ogive. All models share the body bounding-box center and base as their origin, and metres as units. Both solids are retained. The viewer keeps one camera, orbit controller, scene and scale across all profiles.

@@ -1,34 +1,42 @@
 [
   {
     "label": "Blunt",
-    "file": "blunt.glb"
+    "file": "blunt.glb",
+    "step": "blunt.step"
   },
   {
     "label": "Hemisphere",
-    "file": "hemisphere.glb"
+    "file": "hemisphere.glb",
+    "step": "hemisphere.step"
   },
   {
     "label": "Biconic",
-    "file": "biconic.glb"
+    "file": "biconic.glb",
+    "step": "biconic.step"
   },
   {
     "label": "Conic",
-    "file": "conic.glb"
+    "file": "conic.glb",
+    "step": "conic.step"
   },
   {
     "label": "Bowed",
-    "file": "bowed.glb"
+    "file": "bowed.glb",
+    "step": "bowed.step"
   },
   {
     "label": "Elliptical",
-    "file": "elliptical.glb"
+    "file": "elliptical.glb",
+    "step": "elliptical.step"
   },
   {
     "label": "Parabolic",
-    "file": "parabolic.glb"
+    "file": "parabolic.glb",
+    "step": "parabolic.step"
   },
   {
     "label": "Ogive",
-    "file": "ogive.glb"
+    "file": "ogive.glb",
+    "step": "ogive.step"
   }
 ]

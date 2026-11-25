@@ -10,7 +10,7 @@
 <meta property="og:image:alt" content="MATLAB dynamics simulation and modeling results">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<link rel="stylesheet" href="../style.css?v=19">
+<link rel="stylesheet" href="../style.css?v=20">
 <script src="../site.js?v=11" defer></script>
 </head><body><a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header"><div class="shell nav-wrap">
@@ -23,47 +23,42 @@
 <a href="../contact.html" >Contact</a>
 <a class="nav-resume" href="../assets/Kameron_Schad_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
 </nav></div></header>
-<main id="main"><section class="shell case-header"><a class="back-link" href="../projects.html">← All projects</a><p class="eyebrow">COMPUTATIONAL METHODS / FALL 2026</p><h1>Computational Methods</h1><p class="case-deck">Individual MATLAB coursework demonstrating numerical models, experimental-data processing, and critical result checking.</p><div class="case-facts"><div><span>TYPE</span><strong>Individual coursework</strong></div><div><span>TOOLS</span><strong>MATLAB, Excel, numerical methods</strong></div><div><span>MY WORK</span><strong>Code, data analysis, and result checking</strong></div></div></section><section class="shell case-intro"><p class="eyebrow">SELECTED COURSEWORK</p><h2>Writing MATLAB code to solve and check engineering problems.</h2><p>These are individual coursework examples, not independent commercial projects. They demonstrate how I turn governing equations and measured data into calculations, evaluate the results, and recognize model limitations.</p></section><section class="shell work-section"><div class="work-copy"><p class="eyebrow">01 / DYNAMICS MODELING</p><h2>Building a parachute simulation</h2><p>I implemented an explicit Euler model for a high-altitude parachute jump, accounting for changing air density, gravity, drag, wind, and deployment.</p><p>My calculation predicted a landing time of 406.23 seconds, compared with 553 seconds in the reference footage. That discrepancy was a useful reminder to question missing physics and assumptions instead of treating code output as automatically accurate.</p></div><div class="work-media"><figure class="media-figure"><a class="image-link" href="../assets/matlab-parachute-dynamics.webp" data-lightbox data-caption="Parachute simulation plots from MATLAB coursework" aria-label="Open full-size MATLAB parachute simulation"><img src="../assets/matlab-parachute-dynamics.webp" alt="MATLAB simulation plots for velocity, drag, and trajectory" loading="lazy" decoding="async"></a><figcaption>MATLAB dynamics simulation and trajectory</figcaption></figure></div></section><section class="shell work-section work-reverse"><div class="work-copy"><p class="eyebrow">02 / TEST DATA</p><h2>Turning measurements into material properties</h2><p>I processed tensile-test load and elongation data into engineering stress-strain curves, used an elastic-region fit to estimate modulus, and applied numerical differentiation and integration.</p><p>When I found conflicting specimen dimensions in the assignment materials, I recognized that the assumed cross-section affected the modulus calculation. The useful skill here was checking inputs and uncertainty rather than promoting a questionable final number.</p></div><div class="work-media"><figure class="media-figure"><a class="image-link" href="../assets/matlab-tensile-stress-strain.webp" data-lightbox data-caption="Engineering stress-strain analysis with elastic fit" aria-label="Open full-size MATLAB stress-strain results"><img src="../assets/matlab-tensile-stress-strain.webp" alt="Engineering stress-strain plot and fitted elastic region" loading="lazy" decoding="async"></a><figcaption>Tensile-test data processing in MATLAB</figcaption></figure></div></section><section class="shell work-section"><div class="work-copy"><p class="eyebrow">03 / NUMERICAL METHODS</p><h2>Checking solutions, not just calculating them</h2><p>I used Fourier analysis to identify frequency content in a sampled engine signal and implemented bisection, Newton's method, Jacobi, and Gauss-Seidel methods in coursework.</p><p>Across these assignments, I practiced checking convergence, residuals, and whether a computed result made physical sense.</p></div><div class="work-media"><div class="figure-note"><span>METHODS APPLIED</span><h3>Simulation, data analysis, and iterative solvers</h3><p>Examples of MATLAB-based engineering coursework rather than separate full-scale design projects.</p><div class="mini-facts"><span>Euler method</span><span>Fourier analysis</span><span>Root finding</span><span>Linear solvers</span></div></div></div></section><section class="shell outcome-section"><div><p class="eyebrow">WHAT THIS SHOWS</p><h2>Computing skills backed by critical evaluation.</h2></div><div class="outcome-list"><p>Implemented numerical models and processed experimental engineering data.</p><p>Checked approximations and assumptions rather than accepting every computed value at face value.</p></div></section><section class="shell project-resources" aria-labelledby="matlab-source-title"><div><p class="eyebrow">SELECTED CODE</p><h2 id="matlab-source-title">Inside my MATLAB work</h2><p>Short excerpts from my own coursework illustrate the methods I implemented. Complete assignment solutions, course-provided examples, input data and final numerical answers are intentionally excluded. The excerpts are not standalone programs.</p></div><div class="snippet-grid"><article class="snippet-card"><p class="eyebrow">01 / ROOT FINDING</p><h3>Bisection iteration</h3><p>I recorded the bounds, midpoint, and tolerance at each iteration before narrowing the bracket. The excerpt omits the original problem function and numerical inputs.</p><details><summary>View MATLAB excerpt</summary><pre tabindex="0"><code>tol_1 = (b_1 - a_1) / 2;
-    c_1 = (a_1 + b_1) / 2;
+<main id="main"><section class="shell case-header"><a class="back-link" href="../projects.html">← All projects</a><p class="eyebrow">COMPUTATIONAL METHODS / FALL 2026</p><h1>Computational Methods</h1><p class="case-deck">Individual MATLAB coursework demonstrating numerical models, experimental-data processing, and critical result checking.</p><div class="case-facts"><div><span>TYPE</span><strong>Individual coursework</strong></div><div><span>TOOLS</span><strong>MATLAB, Excel, numerical methods</strong></div><div><span>MY WORK</span><strong>Code, data analysis, and result checking</strong></div></div></section><section class="shell case-intro"><p class="eyebrow">SELECTED COURSEWORK</p><h2>Writing MATLAB code to solve and check engineering problems.</h2><p>These are individual coursework examples, not independent commercial projects. They demonstrate how I turn governing equations and measured data into calculations, evaluate the results, and recognize model limitations.</p></section><section class="shell work-section"><div class="work-copy"><p class="eyebrow">01 / DYNAMICS MODELING</p><h2>Building a parachute simulation</h2><p>I implemented an explicit Euler model for a high-altitude parachute jump, accounting for changing air density, gravity, drag, wind, and deployment.</p><p>My calculation predicted a landing time of 406.23 seconds, compared with 553 seconds in the reference footage. That discrepancy was a useful reminder to question missing physics and assumptions instead of treating code output as automatically accurate.</p></div><div class="work-media"><figure class="media-figure"><a class="image-link" href="../assets/matlab-parachute-dynamics.webp" data-lightbox data-caption="Parachute simulation plots from MATLAB coursework" aria-label="Open full-size MATLAB parachute simulation"><img src="../assets/matlab-parachute-dynamics.webp" alt="MATLAB simulation plots for velocity, drag, and trajectory" loading="lazy" decoding="async"></a><figcaption>MATLAB dynamics simulation and trajectory</figcaption></figure></div></section><section class="shell work-section work-reverse"><div class="work-copy"><p class="eyebrow">02 / TEST DATA</p><h2>Turning measurements into material properties</h2><p>I processed tensile-test load and elongation data into engineering stress-strain curves, used an elastic-region fit to estimate modulus, and applied numerical differentiation and integration.</p><p>When I found conflicting specimen dimensions in the assignment materials, I recognized that the assumed cross-section affected the modulus calculation. The useful skill here was checking inputs and uncertainty rather than promoting a questionable final number.</p></div><div class="work-media"><figure class="media-figure"><a class="image-link" href="../assets/matlab-tensile-stress-strain.webp" data-lightbox data-caption="Engineering stress-strain analysis with elastic fit" aria-label="Open full-size MATLAB stress-strain results"><img src="../assets/matlab-tensile-stress-strain.webp" alt="Engineering stress-strain plot and fitted elastic region" loading="lazy" decoding="async"></a><figcaption>Tensile-test data processing in MATLAB</figcaption></figure></div></section><section class="shell work-section"><div class="work-copy"><p class="eyebrow">03 / NUMERICAL METHODS</p><h2>Checking solutions, not just calculating them</h2><p>I used Fourier analysis to identify frequency content in a sampled engine signal and implemented bisection, Newton's method, Jacobi, and Gauss-Seidel methods in coursework.</p><p>Across these assignments, I practiced checking convergence, residuals, and whether a computed result made physical sense.</p></div><div class="work-media"><div class="figure-note"><span>METHODS APPLIED</span><h3>Simulation, data analysis, and iterative solvers</h3><p>Examples of MATLAB-based engineering coursework rather than separate full-scale design projects.</p><div class="mini-facts"><span>Euler method</span><span>Fourier analysis</span><span>Root finding</span><span>Linear solvers</span></div></div></div></section><section class="shell outcome-section"><div><p class="eyebrow">WHAT THIS SHOWS</p><h2>Computing skills backed by critical evaluation.</h2></div><div class="outcome-list"><p>Implemented numerical models and processed experimental engineering data.</p><p>Checked approximations and assumptions rather than accepting every computed value at face value.</p></div></section><section class="shell project-resources" aria-labelledby="matlab-source-title"><div><p class="eyebrow">TECHNICAL EVIDENCE / MATLAB</p><h2 id="matlab-source-title">How I turn engineering models into numerical results</h2><p>Five selected examples from my individual coursework, showing the algorithm, its engineering application, and how I checked the result. Original problem inputs, full assignment solutions and instructor-provided routines are omitted. The code excerpts are not standalone applications.</p></div><div class="technical-cases"><article class="technical-case"><div class="technical-case-heading"><div><p class="eyebrow">01 / DYNAMICS & NUMERICAL INTEGRATION</p><h3>Modeling a changing physical system</h3><p>Implemented a coupled two-dimensional model of a high-altitude parachute descent using explicit Euler integration. The governing forces change as altitude, atmospheric density, velocity relative to wind, and effective parachute area change.</p><p class="technical-skills">Coupled differential equations · variable atmospheric properties · deployment transition · event stopping</p></div><aside class="technical-check"><p class="eyebrow">RESULT &amp; CHECK</p><p>The calculated landing time was 406.23 s versus 553 s in reference footage. Rather than claim validation, I identified missing physics and model assumptions as limitations; agreement at one time step would not prove convergence.</p></aside></div><details class="technical-code" open><summary>Time integration and deployment logic <span>68 lines · MATLAB</span></summary><pre tabindex="0"><code>% Preallocating
+vx = 0*t;
+vy = 0*t;
+x = 0*t;
+y = 0*t;
+CdA = 0*t;
 
-    resv_1(i_1,:) = [i_1 a_1 b_1 c_1 tol_1];
-    
-    if func_1(a_1) * func_1(c_1) &lt; 0
-        b_1 = c_1;
+vx(1) = vx0;
+vy(1) = vy0;
+x(1) = x0;
+y(1) = y0;
+
+last = N + 1;
+
+% Explicit Euler Method
+for i = 1:N
+
+    % Current Altitude
+    z = max(groundASL,Hvideo + y(i));
+
+    % Variable Air Density and Gravity
+    rho = interp1(zTable,rhoTable,z);
+    g = g0*(Re/(Re + z))^2;
+
+    % Effective Drag Area
+    if t(i) &lt; tStart
+        CdA(i) = Cd1*A1;
+
+    elseif t(i) &lt; tDeploy
+        CdA(i) = Cd1*A1 + (Cd2*A2 - Cd1*A1)*(t(i) - tStart)/(tDeploy - tStart);
+
     else
-        a_1 = c_1;
-    end</code></pre></details></article><article class="snippet-card"><p class="eyebrow">02 / LINEAR SYSTEMS</p><h3>Partial pivoting</h3><p>Selecting the largest available pivot helps avoid division by zero during Gaussian elimination. This excerpt shows the row swap, not the full system or solution.</p><details><summary>View MATLAB excerpt</summary><pre tabindex="0"><code>% Pivoting
-        [~,k] = max(abs(ab(j:R,j)));
-        k = k + j - 1;
-    
-        if k ~= j
-            temp = ab(j,:);
-            ab(j,:) = ab(k,:);
-            ab(k,:) = temp;
-        end</code></pre></details></article><article class="snippet-card"><p class="eyebrow">03 / STRESS ANALYSIS</p><h3>Eigenvalue convergence</h3><p>I monitored changes in both the eigenvalue estimate and eigenvector during power iteration. The excerpt omits the stress matrix and full algorithm.</p><details><summary>View MATLAB excerpt</summary><pre tabindex="0"><code>% Sign Modification
-        if unew' * ug &lt; -0.5
-            lambda = -lambda;
-            unew = -unew;
-        end
-    
-        errorlam = abs((lambda - lambdag) / lambda);
-        erroruve = norm(unew - ug) / norm(unew);</code></pre></details></article><article class="snippet-card"><p class="eyebrow">04 / EXPERIMENTAL DATA</p><h3>Linear elastic fit</h3><p>I fitted the elastic portion of measured stress–strain data and constructed a line for the 0.2% offset method. The selected samples, measured inputs, and final results are omitted.</p><details><summary>View MATLAB excerpt</summary><pre tabindex="0"><code>% Linear Regression
-cc = polyfit(x,y,1);
+        CdA(i) = Cd2*A2;
+    end
 
-a1 = cc(1)
-a0 = cc(2)
-
-% Fitted Curve
-xFit = linspace(0,0.0035,100);
-stressFit = a1*xFit + a0;
-
-% 0.2% Offset Line
-xOffset = linspace(0.002,0.006,100);
-stressOffset = a1 * (xOffset - 0.002) + a0;</code></pre></details></article><article class="snippet-card"><p class="eyebrow">05 / SIGNAL PROCESSING</p><h3>Fourier amplitude spectrum</h3><p>I converted Fourier coefficients into frequencies and amplitudes to examine an engine signal. The course-provided DFT implementation and the measured data are omitted.</p><details><summary>View MATLAB excerpt</summary><pre tabindex="0"><code>% Amplitude and Frequency
-for k = 1:length(kpEngine)
-    frequencyEngine(k) = kpEngine(k) / tauEngine;
-    amplitudeEngine(k) = sqrt(AkEngine(k)^2 + BkEngine(k)^2);
-end</code></pre></details></article><article class="snippet-card"><p class="eyebrow">06 / DYNAMICS SIMULATION</p><h3>Euler time stepping</h3><p>I evaluated drag relative to the surrounding air and advanced velocity and position using explicit Euler updates. The complete simulation and initial conditions are omitted.</p><details><summary>View MATLAB excerpt</summary><pre tabindex="0"><code>% Velocity Relative to Air
+    % Velocity Relative to Air
     vrx = vx(i) - wind;
     V = sqrt(vrx^2 + vy(i)^2);
 
@@ -77,6 +72,208 @@ end</code></pre></details></article><article class="snippet-card"><p class="eyeb
 
     % Position
     x(i+1) = x(i) + vx(i)*h;
-    y(i+1) = y(i) + vy(i)*h;</code></pre></details></article></div></section><section class="shell next-project"><a href="../projects/nose-cone-drag.html"><span>NEXT PROJECT</span><strong>Rocket Nose Cone Aerodynamics</strong><em aria-hidden="true">↗</em></a><a class="simple-link" href="../projects.html">All projects ↗</a></section></main><footer class="site-footer"><div class="shell footer-inner"><div><strong>Kameron Schad</strong><p>Mechanical Engineering · Expected May 2028</p></div><div class="footer-links"><a href="mailto:kameronschad6@gmail.com">Email</a><a href="https://www.linkedin.com/in/kameronschad/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/KameronSchad" target="_blank" rel="noopener noreferrer">GitHub</a><a href="../assets/Kameron_Schad_Resume.pdf">Resume</a></div><p class="copyright">© 2026 Kameron Schad</p></div></footer>
+    y(i+1) = y(i) + vy(i)*h;
+
+    % Stop at Ground Level
+    if Hvideo + y(i+1) &lt;= groundASL
+        last = i + 1;
+        break
+    end
+
+end
+
+% Remove Unused Time Steps
+t = t(1:last);
+vx = vx(1:last);
+vy = vy(1:last);
+x = x(1:last);
+y = y(1:last);
+CdA = CdA(1:last);
+
+CdA(end) = Cd2*A2;</code></pre></details></article><article class="technical-case"><div class="technical-case-heading"><div><p class="eyebrow">02 / NUMERICAL LINEAR ALGEBRA</p><h3>Solving a 17-equation structural equilibrium system</h3><p>Implemented Gaussian elimination with partial pivoting and back substitution to solve a structural force system, rather than relying exclusively on MATLAB’s built-in solver. The original coefficient matrix and loads are omitted.</p><p class="technical-skills">Matrix operations · partial pivoting · back substitution · independent solver comparison</p></div><aside class="technical-check"><p class="eyebrow">RESULT &amp; CHECK</p><p>Compared the Gaussian and Gauss–Jordan results with MATLAB’s backslash solver. Pivoting was necessary because zero pivots occurred in forward elimination. A production-grade version should also test singularity, conditioning and residual norm.</p></aside></div><details class="technical-code"><summary>Pivot selection, elimination and back substitution <span>30 lines · MATLAB</span></summary><pre tabindex="0"><code>% Gaussian Elimination
+ab = [A b];
+[R,C] = size(ab);
+
+    % Forward Elimination
+    for j = 1:R-1
+    
+        % Pivoting
+        [~,k] = max(abs(ab(j:R,j)));
+        k = k + j - 1;
+    
+        if k ~= j
+            temp = ab(j,:);
+            ab(j,:) = ab(k,:);
+            ab(k,:) = temp;
+        end
+    
+        for i = j+1:R
+            ab(i,:) = ab(i,:) - ab(i,j)/ab(j,j)*ab(j,:);
+        end
+    end
+
+    % Back Substitution
+    F_Gauss = zeros(R,1);
+
+    F_Gauss(R) = ab(R,C) / ab(R,R);
+
+    for i = R-1:-1:1
+        F_Gauss(i) = (ab(i,C) - ab(i,i+1:R)*F_Gauss(i+1:R)) / ab(i,i);
+    end</code></pre></details></article><article class="technical-case"><div class="technical-case-heading"><div><p class="eyebrow">03 / MECHANICS & EIGENVALUE METHODS</p><h3>Recovering principal stresses and checking against FEA</h3><p>Used power, inverse-power and shifted inverse-power iteration to recover the three principal stresses and directions from a symmetric stress tensor. I tracked both eigenvalue and eigenvector convergence and reconstructed the original tensor.</p><p class="technical-skills">Eigenvalue algorithms · stress transformation · orthogonality · cross-tool verification</p></div><aside class="technical-check"><p class="eyebrow">RESULT &amp; CHECK</p><p>The computed principal stresses agreed with the SolidWorks Simulation results to the reported rounding precision. The von Mises stress also agreed (6.6087 vs. 6.609 MPa). Agreement checks the numerical calculation, not the physical validity of the FEA model.</p></aside></div><details class="technical-code"><summary>Power iteration and shifted/inverse methods <span>57 lines · MATLAB</span></summary><pre tabindex="0"><code>% Power Method (Largest Absolute Eigenvalue)
+[lamres,uv3] = powerm(A,guess,error,maxerr);
+
+lambda3 = lamres;
+
+% Inverse Power Method (Smallest Absolute Eigenvalue)
+B = inv(A);
+
+[lamres,uv1] = powerm(B,guess,error,maxerr);
+
+lambda1 = 1 / lamres;
+
+% Shifted Inverse Power Method (Middle Eigenvalue)
+shift = -3.5;
+C = inv(A - shift * eye(3));
+
+[lamres,uv2] = powerm(C,guess,error,maxerr);
+
+lambda2 = shift + 1 / lamres;
+
+% Eigenvalues and Eigenvectors
+eigenvalues = [lambda1;
+               lambda2;
+               lambda3]
+
+eigenvectors = [uv1 uv2 uv3]
+
+function [lambdag,ug] = powerm(A,ug,errtype,maxerr)
+    error = 1;
+    lambdag = 0;
+
+    while error &gt; maxerr
+        p = A * ug;
+        lambda = norm(p);
+        unew = p / lambda;
+    
+        % Sign Modification
+        if unew' * ug &lt; -0.5
+            lambda = -lambda;
+            unew = -unew;
+        end
+    
+        errorlam = abs((lambda - lambdag) / lambda);
+        erroruve = norm(unew - ug) / norm(unew);
+    
+        if errtype == 1
+            error = erroruve;
+        end
+    
+        if errtype == 2
+            error = errorlam;
+        end
+    
+        ug = unew;
+        lambdag = lambda;
+    end
+end</code></pre></details><details class="technical-code"><summary>Orthogonality, matrix reconstruction and built-in comparison <span>27 lines · MATLAB</span></summary><pre tabindex="0"><code>% Eigenvector Dot Products
+dot12 = uv1' * uv2;
+dot13 = uv1' * uv3;
+dot23 = uv2' * uv3;
+
+% Orthogonality Matrix
+Q = [uv1 uv2 uv3];
+
+format short
+
+QTQ = Q' * Q
+
+format shortG
+
+%% Part h)
+
+% Diagonal Eigenvalue Matrix
+D = diag(eigenvalues);
+
+% Reconstructed Stress Matrix
+Acheck = Q * D * Q'
+
+%% Part i)
+
+[V,D] = eig(A);
+V
+D</code></pre></details></article><article class="technical-case"><div class="technical-case-heading"><div><p class="eyebrow">04 / EXPERIMENTAL DATA ANALYSIS</p><h3>Extracting material properties from tensile measurements</h3><p>Converted extensometer displacement and measured force to engineering strain and stress, selected an elastic region, fitted a line and constructed the 0.2% offset method. Used numerical differentiation as a second modulus estimate.</p><p class="technical-skills">Data reduction · linear regression · numerical differentiation · experimental uncertainty</p></div><aside class="technical-check"><p class="eyebrow">RESULT &amp; CHECK</p><p>The regression and numerical differentiation gave closely matching modulus estimates (74.127 and approximately 74.09 GPa), while the nominal textbook aluminum value was lower. The course materials also contained conflicting specimen widths, so input assumptions matter; matching two numerical methods does not remove systematic measurement error.</p></aside></div><details class="technical-code"><summary>Elastic-region regression and offset construction <span>28 lines · MATLAB</span></summary><pre tabindex="0"><code>% Linear Regression
+cc = polyfit(x,y,1);
+
+a1 = cc(1)
+a0 = cc(2)
+
+% Fitted Curve
+xFit = linspace(0,0.0035,100);
+stressFit = a1*xFit + a0;
+
+% 0.2% Offset Line
+xOffset = linspace(0.002,0.006,100);
+stressOffset = a1 * (xOffset - 0.002) + a0;
+
+figure
+plot(strainExtensometer,stress,'b')
+hold on
+plot(xFit,stressFit,'--r','LineWidth',2)
+plot(xOffset,stressOffset,'--g','LineWidth',2)
+hold off
+
+xlabel('Strain (mm/mm)')
+ylabel('Stress (MPa)')
+title('Stress vs. Strain with Linear Fit and 0.2% Offset')
+legend('Experimental Data','Linear Fit','0.2% Offset','Location','best')
+%xlim([0 0.007])
+ylim([0 300])
+grid on</code></pre></details><details class="technical-code"><summary>Independent central-difference modulus estimate <span>9 lines · MATLAB</span></summary><pre tabindex="0"><code>% Two-Point Central Difference
+n = length(strain);
+
+for i = 2:n-1
+    der(i) = (stress(i+1) - stress(i-1)) / (strain(i+1) - strain(i-1));
+end
+
+% Average Modulus in Elastic Region
+E = mean(der(5:22)) / 1000  % GPa</code></pre></details></article><article class="technical-case"><div class="technical-case-heading"><div><p class="eyebrow">05 / SIGNAL PROCESSING</p><h3>Turning a sampled engine signal into a frequency spectrum</h3><p>Selected an interval with consistent peak spacing, calculated sampling parameters, and interpreted Fourier coefficients as frequency and amplitude. The course-provided DFT helper is not included or claimed as my own implementation.</p><p class="technical-skills">Sampling · spectral interpretation · harmonics · signal visualization</p></div><aside class="technical-check"><p class="eyebrow">RESULT &amp; CHECK</p><p>Identified a fundamental near 1.03 Hz and a strongest non-DC component near its fourth harmonic, 4.14 Hz. This explained why the measured signal was not well represented by a single sinusoid.</p></aside></div><details class="technical-code"><summary>Sampling interval, Fourier amplitudes and spectrum <span>39 lines · MATLAB</span></summary><pre tabindex="0"><code>% Selected Interval for DFT Analysis
+NEngine = 500;
+
+tDFT = tEngine(1:2*NEngine);
+fDFT = fEngine(1:2*NEngine);
+
+% Sampling Parameters
+dtEngine = tDFT(2) - tDFT(1)
+tauEngine = 2*NEngine*dtEngine
+
+% The first 1000 data points contain approximately four cycles
+% of the engine signal, with peaks spaced about 0.97 seconds apart.
+% This interval was selected because the peak spacing is relatively
+% consistent compared to the later portion of the data.
+
+
+%% Part d)
+
+% Discrete Fourier Transform
+[kpEngine,AkEngine,BkEngine] = DFT(tDFT,fDFT);
+
+% Amplitude and Frequency
+for k = 1:length(kpEngine)
+    frequencyEngine(k) = kpEngine(k) / tauEngine;
+    amplitudeEngine(k) = sqrt(AkEngine(k)^2 + BkEngine(k)^2);
+end
+
+% Plotting
+figure
+stem(frequencyEngine(2:end),amplitudeEngine(2:end),'ob')
+
+xlabel('Frequency (Hz)')
+ylabel('Amplitude')
+title('Engine Signal DFT Amplitude Spectrum')
+grid on
+
+% The zero-frequency component is excluded from the plot
+% because the large average signal value would obscure
+% the amplitudes of the oscillating components.</code></pre></details></article></div></section><section class="shell next-project"><a href="../projects/nose-cone-drag.html"><span>NEXT PROJECT</span><strong>Rocket Nose Cone Aerodynamics</strong><em aria-hidden="true">↗</em></a><a class="simple-link" href="../projects.html">All projects ↗</a></section></main><footer class="site-footer"><div class="shell footer-inner"><div><strong>Kameron Schad</strong><p>Mechanical Engineering · Expected May 2028</p></div><div class="footer-links"><a href="mailto:kameronschad6@gmail.com">Email</a><a href="https://www.linkedin.com/in/kameronschad/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/KameronSchad" target="_blank" rel="noopener noreferrer">GitHub</a><a href="../assets/Kameron_Schad_Resume.pdf">Resume</a></div><p class="copyright">© 2026 Kameron Schad</p></div></footer>
 <dialog class="lightbox" id="lightbox" aria-label="Expanded engineering image"><button class="lightbox-dismiss" type="button" data-lightbox-close aria-label="Close image">Close ×</button><img alt="" data-lightbox-image><p data-lightbox-caption></p></dialog>
 </body></html>

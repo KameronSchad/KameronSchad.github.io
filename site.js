@@ -31,8 +31,8 @@
     const grid=document.getElementById('project-list');
     const countLabel=document.querySelector('[data-project-count]');
     function filter(name){current=name;apply(name);const n=cards.filter(c=>!c.hidden).length;if(countLabel)countLabel.textContent=n+' '+(n===1?'project':'projects');}
-    buttons.forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.filter);if(!document.querySelector('.motion-projects'))history.replaceState(null,'',b.dataset.filter==='all'?location.pathname:location.pathname+'#'+b.dataset.filter);}));
-    function fromHash(){const name=location.hash.slice(1);if(document.querySelector('.motion-projects')&&!buttons.some(b=>b.dataset.filter===name))return;filter(buttons.some(b=>b.dataset.filter===name)?name:'all');}
+    buttons.forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.filter);history.replaceState(null,'',b.dataset.filter==='all'?location.pathname:location.pathname+'#'+b.dataset.filter);}));
+    function fromHash(){const name=location.hash.slice(1);filter(buttons.some(b=>b.dataset.filter===name)?name:'all');}
     sorter?.addEventListener('change',()=>{const mode=sorter.value;const sorted=[...cards].sort((a,b)=>{const rank=Number(a.dataset.rank)-Number(b.dataset.rank);return mode==='featured'?rank:(mode==='newest'?Number(b.dataset.year)-Number(a.dataset.year):Number(a.dataset.year)-Number(b.dataset.year))||rank;});sorted.forEach(c=>grid?.appendChild(c));filter(current);});
     search?.addEventListener('input',()=>filter(current));
     fromHash();window.addEventListener('hashchange',fromHash);

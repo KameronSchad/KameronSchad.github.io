@@ -1,4 +1,4 @@
-/* Progressive enhancement: project filters, carousel, image lightbox, mobile nav. */
+/* Progressive enhancement: project filters, ordering, section navigation, image lightbox and mobile nav. */
 (() => {
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mobile=document.querySelector('[data-menu-toggle]');
@@ -24,7 +24,15 @@
       buttons.forEach(b=>{const active=b.dataset.filter===name;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
       if(empty)empty.hidden=count>0;
     };
-    buttons.forEach(b=>b.addEventListener('click',()=>apply(b.dataset.filter)));
+    let current='all';
+    const sorter=document.querySelector('[data-project-sort]');
+    const grid=document.getElementById('project-list');
+    const countLabel=document.querySelector('[data-project-count]');
+    function filter(name){current=name;apply(name);const n=cards.filter(c=>!c.hidden).length;if(countLabel)countLabel.textContent=n+' '+(n===1?'project':'projects');}
+    buttons.forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.filter);history.replaceState(null,'',b.dataset.filter==='all'?location.pathname:location.pathname+'#'+b.dataset.filter);}));
+    function fromHash(){const name=location.hash.slice(1);filter(buttons.some(b=>b.dataset.filter===name)?name:'all');}
+    sorter?.addEventListener('change',()=>{const mode=sorter.value;const sorted=[...cards].sort((a,b)=>{const rank=Number(a.dataset.rank)-Number(b.dataset.rank);return mode==='featured'?rank:(mode==='newest'?Number(b.dataset.year)-Number(a.dataset.year):Number(a.dataset.year)-Number(b.dataset.year))||rank;});sorted.forEach(c=>grid?.appendChild(c));filter(current);});
+    fromHash();window.addEventListener('hashchange',fromHash);
   }
   const carousel=document.querySelector('[data-carousel]');
   if(carousel){
@@ -59,6 +67,8 @@
       show(0);setPause();start();
     }
   }
+  const toc=[...document.querySelectorAll('.case-toc a[href^="#"]')];
+  if(toc.length&&'IntersectionObserver' in window){const tracked=toc.map(a=>({link:a,section:document.getElementById(a.hash.slice(1))})).filter(x=>x.section);let frame=0;const update=()=>{frame=0;let active=tracked[0];for(const x of tracked){if(x.section.getBoundingClientRect().top<=170)active=x;}for(const x of tracked){if(x===active)x.link.setAttribute('aria-current','location');else x.link.removeAttribute('aria-current');}};const onScroll=()=>{if(!frame)frame=requestAnimationFrame(update);};window.addEventListener('scroll',onScroll,{passive:true});update();}
   const dialog=document.getElementById('lightbox');
   if(dialog&&typeof dialog.showModal==='function'){
     const photo=dialog.querySelector('[data-lightbox-image]');

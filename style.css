@@ -444,24 +444,7 @@ body { font-size:15px; line-height:1.62; }
   .contact-primary { padding:22px; }
 }
 
-/* Budget evidence and pending source photographs for the claw machine case study. */
-.budget-summary { display:flex; flex-direction:column; justify-content:center; min-height:270px; padding:32px; background:linear-gradient(135deg,#173345,#10202f); border:1px solid #35556a; border-radius:14px; }
-.budget-summary .eyebrow { margin:0 0 6px; }
-.budget-summary>strong { font-size:clamp(3.25rem,7vw,5rem); letter-spacing:-.07em; line-height:1.08; color:#e7faf8; }
-.budget-summary>p { margin:3px 0 0; font-size:.93rem; }
-.budget-summary-divider { border-top:1px solid #35556a; margin:24px 0 16px; }
-.budget-summary>span:not(.eyebrow) { font-size:.68rem; font-weight:800; letter-spacing:.1em; color:var(--accent); }
-.pending-media { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-height:310px; padding:35px; border:2px dashed #507385; border-radius:14px; background:repeating-linear-gradient(135deg,rgba(77,145,171,.035),rgba(77,145,171,.035) 14px,transparent 14px,transparent 28px),#112536; }
-.pending-media-kicker { color:var(--accent); font-size:.66rem; letter-spacing:.12em; font-weight:800; }
-.pending-media strong { font-size:clamp(1.25rem,2vw,1.7rem); line-height:1.25; margin:16px 0 9px; }
-.pending-media p { max-width:420px; margin-bottom:12px; font-size:.92rem; }
-.pending-media small { color:#9cbacc; font-size:.75rem; }
-@media (max-width:640px) {
-  .budget-summary { min-height:220px; padding:25px; }
-  .pending-media { min-height:250px; padding:25px; }
-}
-
-/* Documented pneumatic sequence on the claw-machine case study. */
+/* Claw-machine outcomes and CAD gallery. */
 .claw-operation-steps { background:#142739; border:1px solid #36526b; border-radius:14px; padding:27px 31px; display:grid; gap:0; }
 .claw-operation-steps>div { padding:15px 0 16px; border-bottom:1px solid #355069; }
 .claw-operation-steps>div:first-child { padding-top:0; }
@@ -470,3 +453,23 @@ body { font-size:15px; line-height:1.62; }
 .claw-operation-steps strong { font-size:1.07rem; font-weight:750; line-height:1.32; }
 .claw-operation-steps p { margin:5px 0 0; font-size:.9rem; line-height:1.55; }
 @media(max-width:640px) { .claw-operation-steps { padding:22px; } }
+
+/* Original CAD screenshots: readable on desktop and stacked on small screens. */
+.cad-section { padding:40px 0 52px; border-bottom:1px solid #273b4e; }
+.cad-section>h2 { font-size:clamp(1.5rem,2.35vw,2.2rem); margin-bottom:9px; }
+.cad-section>p:not(.eyebrow) { max-width:780px; line-height:1.65; margin-bottom:20px; }
+.cad-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+.cad-gallery-item { border:1px solid #31495b; border-radius:10px; overflow:hidden; background:#e9edf1; }
+.cad-gallery-item>a { display:flex; align-items:center; justify-content:center; min-height:185px; height:185px; cursor:zoom-in; }
+.cad-gallery-item img { width:100%; height:100%; display:block; object-fit:contain; }
+.cad-gallery-item figcaption { background:#111e2b; color:#c3d1de; padding:10px 13px; font-size:.81rem; line-height:1.35; }
+.image-followup { margin:14px 0 0; font-size:.85rem; line-height:1.55; color:#aabfcf; }
+/* Reflect the original cropped showcase photo after its asset name changed. */
+.featured-image:has(img[src*="claw-showcase-cropped"])>img,
+.project-card-art:has(img[src*="claw-showcase-cropped"])>img { object-fit:cover; }
+/* Improve legibility of small section labels without making the layout larger overall. */
+.eyebrow { font-size:.77rem; }
+.hero-education span,.feature-detail span,.card-meta,.media-count,.case-facts span { font-size:.7rem; }
+.identity-title small { font-size:.64rem; }
+@media(max-width:800px) { .cad-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:540px) { .cad-gallery { grid-template-columns:1fr; } .cad-gallery-item>a { height:210px; } .cad-section { padding:28px 0 35px; } }

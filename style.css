@@ -487,3 +487,14 @@ body { font-size:15px; line-height:1.62; }
 .resource-links>a>em { position:absolute; right:18px; top:20px; font-style:normal; font-size:1.1rem; }
 .resource-note { max-width:850px; margin:13px 0 0; font-size:.81rem; line-height:1.55; }
 @media(max-width:660px) { .resource-links { grid-template-columns:1fr; } .project-resources { padding:25px 0 35px; } }
+
+/* Personal photography on the About page */
+.life-section { padding:0 0 70px; }
+.life-section>h2 { font-size:clamp(1.6rem,2.5vw,2.15rem); margin:0 0 8px; }
+.life-section>p:not(.eyebrow) { margin:0 0 22px; }
+.life-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+.life-gallery .media-figure>a { display:block; background:#101a25; }
+.life-gallery .media-figure img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center; max-height:none; }
+.life-gallery .media-figure:first-child img { object-position:center 80%; }
+@media(max-width:700px) { .life-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); } .life-section { padding-bottom:45px; } }
+@media(max-width:450px) { .life-gallery { grid-template-columns:1fr; } .life-gallery .media-figure img { max-height:440px; object-fit:contain; } }

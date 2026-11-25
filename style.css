@@ -510,3 +510,6 @@ body { font-size:15px; line-height:1.62; }
 .code-group li a { color:var(--accent); } .code-group .code-download { color:#acc0d0; } .code-note { font-size:.82rem; color:#acc0d0; margin:14px 0 0; }
 .rocket-model-controls { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:12px 0; }
 .rocket-model-controls select { color:#e5eef5; background:#142535; border:1px solid #355069; border-radius:7px; padding:9px 12px; font:inherit; }
+
+/* Selective code evidence, not complete assignment solutions. */
+.snippet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}.snippet-card{min-width:0;background:#142535;border:1px solid #355069;border-radius:12px;padding:18px}.snippet-card h3{margin:0 0 8px;font-size:1.12rem}.snippet-card>p:not(.eyebrow){font-size:.9rem;color:#c3d1de;line-height:1.55;margin:0 0 12px}.snippet-card summary{cursor:pointer;color:var(--accent);font-size:.86rem;font-weight:650}.snippet-card pre{overflow:auto;background:#0b1420;border:1px solid #31495b;border-radius:8px;padding:12px;max-width:100%;font-size:.75rem;line-height:1.65;color:#d4e7ef;tab-size:4;white-space:pre}.snippet-card code{font-family:Consolas,Monaco,'Courier New',monospace}@media(max-width:700px){.snippet-grid{grid-template-columns:1fr}}

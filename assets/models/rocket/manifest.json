@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "label": "Blunt",
+    "file": "blunt.glb"
+  },
+  {
+    "label": "Hemisphere",
+    "file": "hemisphere.glb"
+  },
+  {
+    "label": "Biconic",
+    "file": "biconic.glb"
+  },
+  {
+    "label": "Conic",
+    "file": "conic.glb"
+  },
+  {
+    "label": "Bowed",
+    "file": "bowed.glb"
+  },
+  {
+    "label": "Elliptical",
+    "file": "elliptical.glb"
+  },
+  {
+    "label": "Parabolic",
+    "file": "parabolic.glb"
+  },
+  {
+    "label": "Ogive",
+    "file": "ogive.glb"
+  }
+]

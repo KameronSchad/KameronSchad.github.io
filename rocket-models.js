@@ -16,5 +16,6 @@
   viewer.addEventListener('load',()=>{status.textContent='Rotate or zoom to inspect the assembly.';});
   viewer.addEventListener('error',()=>{status.textContent='The model could not be loaded. Try downloading the GLB.';});
   select.addEventListener('change',update);module.addEventListener('error',()=>{status.textContent='Interactive viewer could not be loaded. The GLB download remains available.';});
+  select.value=valid.some(x=>x.file==='ogive.glb')?'ogive.glb':valid[0].file;
   section.hidden=false;update();
 })();

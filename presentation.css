@@ -104,7 +104,7 @@ body{background:radial-gradient(ellipse at 85% -8%,#20374688 0,transparent 34rem
 .reveal-stage.ready .reveal-drafting-grid{visibility:visible}
 .reveal-stage canvas{z-index:1}
 .reveal-line{left:clamp(1px,var(--split),calc(100% - 1px))}
-.reveal-grip{left:clamp(20px,50%,calc(100% - 20px))}
+.reveal-grip{left:50%}
 @media(hover:hover) and (pointer:fine) and (min-width:761px){
   .milestone:hover:not(:focus-within):not(.preview-open) .milestone-preview{opacity:0;visibility:hidden;transform:translateY(-45%) scale(.98)}
   .milestone:hover:not(:focus-within):not(.preview-open) .milestone-title{color:inherit}

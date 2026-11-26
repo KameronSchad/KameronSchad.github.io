@@ -1,6 +1,6 @@
 /* Hover holds the current slide AFTER playback ends. It never interrupts the film. */
 (()=>{const root=document.getElementById('engineering-showcase');if(!root)return;
-const slides=[...root.querySelectorAll('[data-showcase-slide]')],tabs=[...root.querySelectorAll('[data-showcase-select]')],videos=slides.map(s=>s.hasAttribute('data-rocket-film')&&typeof window.createRocketShowcase==='function'?window.createRocketShowcase(s):s.querySelector('video')),toggle=root.querySelector('[data-showcase-toggle]'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const slides=[...root.querySelectorAll('[data-showcase-slide]')],tabs=[...root.querySelectorAll('[data-showcase-select]')],videos=slides.map(s=>s.querySelector('video')),toggle=root.querySelector('[data-showcase-toggle]'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hoverCapable=matchMedia('(hover:hover) and (pointer:fine)').matches;
 let index=0,auto=!reduced,visible=false,hover=false,focused=false,timer=0,epoch=0,manual=false,failed=false;
 const current=()=>videos[index],clear=()=>{clearTimeout(timer);timer=0;};

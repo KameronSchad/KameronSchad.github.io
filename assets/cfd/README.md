@@ -1,0 +1,9 @@
+# Rocket CFD showcase data
+
+Source: owner-supplied SOLIDWORKS Flow Simulation tab-separated volume and surface exports, Biconic.txt, Hemisphere.txt, Blunt.txt. All cases are the 120 mph (2112 in/s) external-flow condition. This is post-processing of solved data, not a new CFD run.
+
+Each JSON contains a 240 × 100 uniform sample grid, covering the same 12 in axial by 4.7 in transverse crop relative to the rocket tail and centerline. The screen's horizontal axis is negative source Y; its vertical axis is positive source Z. The center-plane X and transverse origin are estimated from cylindrical no-slip wall samples; axial registration uses the reported CAD lengths and foremost wall samples. The field is reconstructed with three-dimensional piecewise-linear interpolation of finite volume and wall samples near the plane. Missing points are not extrapolated. Quantization: nearest integer in/s, interleaved speed magnitude, Vy and Vz, signed little-endian int16, base64 encoded; 32767 indicates no support. The common 0–2300 in/s color scale covers the source maxima.
+
+The original STEP-derived GLB silhouettes are used for the solid overlay and tracer exclusion. Tracers integrate the in-plane velocity components from the stationary field, with display time slowed uniformly; they do not represent a transient solution or complete three-dimensional trajectories. Approximate geometry registration, original mesh resolution, interpolation and projection limit near-wall accuracy. The source study used a level 3/7 global mesh without a mesh-convergence study. The animation is a qualitative visualization of the solved fields, not a new validation or an exact reproduction of a native SolidWorks cut plot.
+
+Regenerate: python scripts/prepare-rocket-cfd.py /path/to/exports assets/cfd (requires pandas, numpy, scipy). The raw input files are not published in this repository.

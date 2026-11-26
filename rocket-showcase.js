@@ -23,19 +23,41 @@
     for(let i=0;i<c.width*c.height;i++){const v=values[i*3];if(v===32767)continue;const rgb=color(v);img.data.set([...rgb,255],i*4);}
     ctx.putImageData(img,0,0);return {...raw,values,image:c};
   }
-  // Project every original CAD triangle onto the YZ side view. Consistent winding
-  // produces a union silhouette with no tessellation edges or internal stray lines.
-  function silhouette(THREE,obj){
-    const c=canvas(960,376),ctx=c.getContext('2d'),path=new Path2D();
-    obj.updateWorldMatrix(true,true);
-    const a=new THREE.Vector3(),b=new THREE.Vector3(),d=new THREE.Vector3();
-    function project(v){return [( -v.y/.0254-X0)/(X1-X0)*c.width,(Z1-v.z/.0254)/(Z1-Z0)*c.height];}
-    obj.traverse(o=>{if(!o.isMesh)return;const pos=o.geometry.attributes.position,idx=o.geometry.index, count=idx?idx.count:pos.count;
-      for(let i=0;i+2<count;i+=3){a.fromBufferAttribute(pos,idx?idx.getX(i):i).applyMatrix4(o.matrixWorld);b.fromBufferAttribute(pos,idx?idx.getX(i+1):i+1).applyMatrix4(o.matrixWorld);d.fromBufferAttribute(pos,idx?idx.getX(i+2):i+2).applyMatrix4(o.matrixWorld);
-        const p=project(a),q=project(b),r=project(d);const cross=(q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0]);if(Math.abs(cross)<1e-8)continue;
-        path.moveTo(...p);path.lineTo(...(cross>0?q:r));path.lineTo(...(cross>0?r:q));path.closePath();}
-    });ctx.fillStyle='#fff';ctx.fill(path);
-    return c;
+  // Read the actual STEP-derived GLB directly. These assets contain two named,
+  // untransformed indexed triangle meshes. No CDN, WebGL, or loader name rewriting.
+  function parseGLB(buffer){
+    const dv=new DataView(buffer);if(dv.getUint32(0,true)!==0x46546c67||dv.getUint32(4,true)!==2)throw Error('Invalid CAD GLB');
+    const jsonLen=dv.getUint32(12,true),json=JSON.parse(new TextDecoder().decode(new Uint8Array(buffer,20,jsonLen)).trim()),bin=20+jsonLen+8;
+    function accessor(i){const a=json.accessors[i],v=json.bufferViews[a.bufferView],n=a.type==='VEC3'?3:1;
+      const bytes=a.componentType===5123?2:4,base=bin+(v.byteOffset||0)+(a.byteOffset||0),stride=v.byteStride||n*bytes;
+      if(![5123,5125,5126].includes(a.componentType))throw Error('Unsupported CAD accessor');
+      const out=new (a.componentType===5126?Float32Array:Uint32Array)(a.count*n);
+      for(let j=0;j<a.count;j++)for(let k=0;k<n;k++){const at=base+j*stride+k*bytes;out[j*n+k]=a.componentType===5126?dv.getFloat32(at,true):a.componentType===5125?dv.getUint32(at,true):dv.getUint16(at,true);}return out;}
+    function part(name){const node=json.nodes.find(n=>n.name===name||n.name===name.replaceAll(' ','_'));if(!node||node.mesh===undefined)throw Error('Missing CAD part: '+name);
+      if(node.matrix||node.translation||node.rotation||node.scale)throw Error('Unexpected CAD transform');
+      const p=json.meshes[node.mesh].primitives[0];return {pos:accessor(p.attributes.POSITION),normal:accessor(p.attributes.NORMAL),idx:accessor(p.indices)};}
+    return {body:part('Rocket body'),nose:part('Nose cone')};
+  }
+  // Software orthographic rasterizer: triangle coverage and depth from the original
+  // CAD, with interpolated vertex normals for clean metallic shading. The same
+  // projection is used for the outline, the solid overlay, and tracer exclusion.
+  function raster(part,base){
+    const w=960,h=376,c=canvas(w,h),ctx=c.getContext('2d'),img=ctx.createImageData(w,h),depth=new Float32Array(w*h);depth.fill(-Infinity);
+    const m=canvas(w,h),mc=m.getContext('2d'),mask=mc.createImageData(w,h),p=part.pos,n=part.normal,ind=part.idx;
+    const xx=new Float32Array(p.length/3),yy=new Float32Array(xx.length),zz=new Float32Array(xx.length);
+    for(let i=0;i<xx.length;i++){xx[i]=(-p[i*3+1]/.0254-X0)/(X1-X0)*w;yy[i]=(Z1-p[i*3+2]/.0254)/(Z1-Z0)*h;zz[i]=-p[i*3]/.0254;}
+    for(let q=0;q<ind.length;q+=3){const a=ind[q],b=ind[q+1],d=ind[q+2],ax=xx[a],ay=yy[a],bx=xx[b],by=yy[b],dx=xx[d],dy=yy[d];
+      const den=(by-dy)*(ax-dx)+(dx-bx)*(ay-dy);if(Math.abs(den)<1e-7)continue;
+      const minx=Math.max(0,Math.floor(Math.min(ax,bx,dx))),maxx=Math.min(w-1,Math.ceil(Math.max(ax,bx,dx))),miny=Math.max(0,Math.floor(Math.min(ay,by,dy))),maxy=Math.min(h-1,Math.ceil(Math.max(ay,by,dy)));
+      for(let y=miny;y<=maxy;y++)for(let x=minx;x<=maxx;x++){
+        const u=((by-dy)*(x+.5-dx)+(dx-bx)*(y+.5-dy))/den,v=((dy-ay)*(x+.5-dx)+(ax-dx)*(y+.5-dy))/den,k=1-u-v;if(u<-.0001||v<-.0001||k<-.0001)continue;
+        const at=y*w+x,dep=u*zz[a]+v*zz[b]+k*zz[d];if(dep<depth[at])continue;depth[at]=dep;
+        let nx=u*n[a*3]+v*n[b*3]+k*n[d*3],ny=u*n[a*3+1]+v*n[b*3+1]+k*n[d*3+1],nz=u*n[a*3+2]+v*n[b*3+2]+k*n[d*3+2];const norm=Math.hypot(nx,ny,nz)||1;nx/=norm;ny/=norm;nz/=norm;
+        const lit=Math.max(0,-.76*nx+.20*ny+.62*nz),rim=Math.max(0,.26*nx-.28*ny+.91*nz),gloss=Math.pow(Math.max(0,-.93*nx+.11*ny+.36*nz),18);
+        const light=.43+.60*lit+.16*rim,at4=at*4;for(let ch=0;ch<3;ch++){img.data[at4+ch]=Math.min(255,base[ch]*light+42*gloss);mask.data[at4+ch]=255;}img.data[at4+3]=mask.data[at4+3]=255;
+      }
+    }
+    ctx.putImageData(img,0,0);mc.putImageData(mask,0,0);return {image:c,mask:m};
   }
   function outline(mask){const c=canvas(mask.width,mask.height),ctx=c.getContext('2d');for(let i=0;i<8;i++){let a=i*Math.PI/4;ctx.drawImage(mask,2*Math.cos(a),2*Math.sin(a));}ctx.globalCompositeOperation='destination-out';ctx.drawImage(mask,0,0);ctx.globalCompositeOperation='source-in';ctx.fillStyle='#82d9dc';ctx.fillRect(0,0,c.width,c.height);return c;}
   function maskUnion(body,nose){const c=canvas(body.width,body.height),ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(body,0,0);ctx.drawImage(nose,0,0);return {w:c.width,h:c.height,alpha:ctx.getImageData(0,0,c.width,c.height).data};}
@@ -45,7 +67,7 @@
   function rocketController(slide){
     const stage=slide.querySelector('.claw-film-stage'),old=stage.querySelector('video'),caption=slide.querySelector('figcaption span');
     const player=new EventTarget();let t=0,paused=true,ended=false,ready=false,failed=false,raf=0,last=0,initializing=null,epoch=0;
-    let THREE,renderer,scene,camera,pivot,parts,body,noses,bodyMat,noseMat,fields,masks,bodyOutline,noseOutline,particles=[],active=-1;
+    let body,noses,fields,masks,bodyOutline,noseOutline,particles=[],active=-1;
     const layer=document.createElement('div');layer.style.cssText='position:absolute;inset:0;background:#0d1722;overflow:hidden;';
     layer.setAttribute('role','img');layer.setAttribute('aria-label','Rocket CAD assembly followed by biconic, hemisphere and blunt CFD velocity magnitude and projected velocity tracers at 120 mph.');
     const display=canvas(W*2,H*2),ctx=display.getContext('2d');display.style.cssText='position:absolute;inset:0;width:100%;height:100%;display:block;';ctx.setTransform(2,0,0,2,0,0);layer.append(display);
@@ -57,7 +79,7 @@
     function background(){ctx.clearRect(0,0,W,H);const g=ctx.createRadialGradient(400,280,35,400,280,510);g.addColorStop(0,'#172e3e');g.addColorStop(1,'#0c1621');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);ctx.strokeStyle='#7699af12';ctx.lineWidth=1;ctx.beginPath();for(let x=0;x<W;x+=32){ctx.moveTo(x,0);ctx.lineTo(x,H);}for(let y=0;y<H;y+=32){ctx.moveTo(0,y);ctx.lineTo(W,y);}ctx.stroke();}
     function hud(phase,detail,step){label('02 / ROCKET AERODYNAMICS',30,35,15,'#a7c6d2',700);label(phase,770,35,15,'#8bdcd7',700,'right');ctx.strokeStyle='#64839455';ctx.beginPath();ctx.moveTo(30,51);ctx.lineTo(770,51);ctx.stroke();label(detail,30,570,13,'#a9c0cd');label(step,770,570,13,'#8bdcd7',650,'right');}
     function blueprint(part,offset,reveal,alpha){if(reveal<=0||alpha<=0)return;ctx.save();ctx.globalAlpha=alpha;ctx.beginPath();ctx.rect(0,550-500*reveal,W,500*reveal);ctx.clip();ctx.translate(400,310);ctx.rotate(Math.PI/2);const s=61;ctx.translate((MID+offset)*s,0);ctx.drawImage(part,X0*s,-Z1*s,(X1-X0)*s,(Z1-Z0)*s);ctx.restore();}
-    function setCamera(scale,centerX,centerY){const hw=W/(2*scale),hh=H/(2*scale);camera.left=-hw;camera.right=hw;camera.top=hh;camera.bottom=-hh;camera.position.set((W/2-centerX)/scale,(centerY-H/2)/scale,50);camera.lookAt(camera.position.x,camera.position.y,0);camera.updateProjectionMatrix();}
+    function shaded(part,offset,alpha,rotation,scale,centerX,centerY){if(alpha<=0)return;ctx.save();ctx.globalAlpha=alpha;ctx.translate(centerX,centerY);ctx.rotate(rotation);ctx.translate((MID+offset)*scale,0);ctx.drawImage(part.image,X0*scale,-Z1*scale,(X1-X0)*scale,(Z1-Z0)*scale);ctx.restore();}
     function spawn(p,initial=false){for(let i=0;i<30;i++){p.x=initial?mix(X0+.05,X1-.05,Math.random()):X0+.03;p.z=mix(Z0+.06,Z1-.06,Math.random());if(!solid(masks[active],p.x,p.z))break;}p.age=0;}
     function fieldDraw(i,dt,fade){const f=fields[i],m=masks[i];if(active!==i){active=i;particles=Array.from({length:220},()=>{const p={};spawn(p,true);return p;});}
       ctx.save();ctx.globalAlpha=fade;ctx.imageSmoothingEnabled=true;ctx.drawImage(f.image,FIELD.x,FIELD.y,FIELD.w,FIELD.h);ctx.strokeStyle='#a7c9dc80';ctx.lineWidth=1;ctx.strokeRect(FIELD.x,FIELD.y,FIELD.w,FIELD.h);ctx.beginPath();ctx.rect(FIELD.x,FIELD.y,FIELD.w,FIELD.h);ctx.clip();
@@ -67,25 +89,24 @@
       ctx.stroke();ctx.restore();
       label('FREESTREAM  120 mph  /  2112 in/s',30,113,17,'#d4e5ef',650);label('−Y  →',770,113,16,'#8bdcd7',700,'right');label('VELOCITY MAGNITUDE  |  in/s',30,474,13,'#d4e5ef',650);const lx=30,ly=486,lw=740,lh=14;const gradient=ctx.createLinearGradient(lx,0,lx+lw,0);for(const s of stops)gradient.addColorStop(s[0]/2300,'rgb('+s.slice(1).join(',')+')');ctx.fillStyle=gradient;ctx.fillRect(lx,ly,lw,lh);for(const v of [0,575,1150,1725,2300]){const x=lx+lw*v/2300;ctx.strokeStyle='#b5c8d4';ctx.beginPath();ctx.moveTo(x,ly+lh);ctx.lineTo(x,ly+lh+5);ctx.stroke();label(String(v),x,525,13,'#b5c8d4',500,v===0?'left':v===2300?'right':'center');}
     }
-    function draw(dt){if(!ready)return;background();const horizontal=ease((t-4.0)/1.7),flow=t>=5.7, i=t<11.6?0:t<17.5?1:2;const centerX=mix(400,TAIL-MID*SCALE,horizontal),centerY=mix(310,CY,horizontal),scale=mix(61,SCALE,horizontal);
-      const alpha=ease((t-1.85)/.7);if(!flow){const join=ease((t-2.55)/1.25),offBody=.36*(1-join),offNose=-.9*(1-join);blueprint(bodyOutline,offBody,ease(t/.95),1-alpha);blueprint(noseOutline,offNose,ease((t-.65)/1.05),1-alpha);body.position.y=-offBody*.0254;noses[0].position.y=-offNose*.0254;hud(t<2.1?'01 / PROFILE REVEAL':t<4?'02 / ASSEMBLY':'03 / FLOW ALIGNMENT',t<2.1?'Original CAD silhouette · clean external outlines':t<4?'Finned body + interchangeable biconic nose':'Orthographic side view · fixed physical scale',t<4?'01 / 02':'02 / 02');}
-      else{body.position.y=0;noses[0].position.y=0;fieldDraw(i,dt,ease((t-5.7)/.55));hud(LABELS[i]+' / '+(i+1)+' OF 3','Interpolated steady CFD slice · projected tracers slowed for display','Y–Z PLANE');}
-      pivot.rotation.z=-Math.PI/2*(1-horizontal);parts.rotation.y=0;setCamera(scale,centerX,centerY);body.visible=alpha>0;noses.forEach((n,k)=>{n.visible=k===(flow?i:0)&&alpha>0;});bodyMat.opacity=alpha;noseMat.opacity=alpha;bodyMat.transparent=alpha<1;noseMat.transparent=alpha<1;renderer.render(scene,camera);
+    function draw(dt){if(!ready)return;background();const horizontal=ease((t-4.0)/1.7),flow=t>=5.7,i=t<11.6?0:t<17.5?1:2;
+      const centerX=mix(400,TAIL-MID*SCALE,horizontal),centerY=mix(310,CY,horizontal),scale=mix(61,SCALE,horizontal),rotation=Math.PI/2*(1-horizontal),alpha=ease((t-1.85)/.7);
+      if(!flow){const join=ease((t-2.55)/1.25),offBody=.36*(1-join),offNose=-.9*(1-join);blueprint(bodyOutline,offBody,ease(t/.95),1-alpha);blueprint(noseOutline,offNose,ease((t-.65)/1.05),1-alpha);shaded(body,offBody,alpha,rotation,scale,centerX,centerY);shaded(noses[0],offNose,alpha,rotation,scale,centerX,centerY);
+        hud(t<2.1?'01 / PROFILE REVEAL':t<4?'02 / ASSEMBLY':'03 / FLOW ALIGNMENT',t<2.1?'Original CAD silhouette · clean external outlines':t<4?'Finned body + interchangeable biconic nose':'Orthographic side view · fixed physical scale',t<4?'01 / 02':'02 / 02');}
+      else{fieldDraw(i,dt,ease((t-5.7)/.55));shaded(body,0,1,0,scale,centerX,centerY);shaded(noses[i],0,1,0,scale,centerX,centerY);hud(LABELS[i]+' / '+(i+1)+' OF 3','Interpolated steady CFD slice · projected tracers slowed for display','Y–Z PLANE');}
     }
     async function init(){
-      const modules=await Promise.all([import('three'),import('three/addons/loaders/GLTFLoader.js'),...NAMES.map(n=>fetch('assets/cfd/'+n+'.json?v=1').then(r=>{if(!r.ok)throw Error('CFD fetch '+r.status);return r.json();}))]);THREE=modules[0];const loader=new modules[1].GLTFLoader();fields=modules.slice(2).map(makeField);
-      const models=await Promise.all(NAMES.map(n=>loader.loadAsync('assets/models/rocket/'+n+'.glb?v=2')));body=models[0].scene.getObjectByName('Rocket body');noses=models.map(m=>m.scene.getObjectByName('Nose cone'));if(!body||noses.some(n=>!n))throw Error('Original CAD parts unavailable');
-      const bodyMask=silhouette(THREE,body),noseMasks=noses.map(n=>silhouette(THREE,n));bodyOutline=outline(bodyMask);noseOutline=outline(noseMasks[0]);masks=noseMasks.map(n=>maskUnion(bodyMask,n));
-      scene=new THREE.Scene();camera=new THREE.OrthographicCamera(-1,1,1,-1,.01,200);renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});renderer.setClearColor(0x000000,0);renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.setSize(W,H,false);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;renderer.domElement.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';layer.insertBefore(renderer.domElement,status);
-      scene.add(new THREE.HemisphereLight(0xe0f4ff,0x394957,2.1));for(const [c,v,p] of [[0xffffff,3,[5,8,10]],[0xa5e4e9,1.1,[-8,2,5]],[0xffffff,1.5,[0,5,-6]]]){const l=new THREE.DirectionalLight(c,v);l.position.set(...p);scene.add(l);}
-      pivot=new THREE.Group();scene.add(pivot);const centered=new THREE.Group();centered.position.x=MID;pivot.add(centered);const basis=new THREE.Group();basis.matrix.set(0,-1,0,0,0,0,1,0,-1,0,0,0,0,0,0,1);basis.matrix.multiply(new THREE.Matrix4().makeScale(1/.0254,1/.0254,1/.0254));basis.matrixAutoUpdate=false;centered.add(basis);parts=new THREE.Group();basis.add(parts);parts.add(body,...noses);
-      bodyMat=new THREE.MeshStandardMaterial({color:0x8796a4,metalness:.12,roughness:.42});noseMat=new THREE.MeshStandardMaterial({color:0xc1d5db,metalness:.16,roughness:.37});body.traverse(o=>{if(o.isMesh)o.material=bodyMat;});noses.forEach(n=>n.traverse(o=>{if(o.isMesh)o.material=noseMat;}));
-      ready=true;status.hidden=true;status.style.display='none';caption.textContent='Original CAD · solved 120 mph CFD, interpolated center-plane · steady-flow tracers slowed';draw(0);player.dispatchEvent(new Event('loadedmetadata'));
+      const load=(url,kind)=>fetch(url).then(r=>{if(!r.ok)throw Error(url+' returned '+r.status);return r[kind]();});
+      const [raw,models]=await Promise.all([Promise.all(NAMES.map(n=>load('assets/cfd/'+n+'.json?v=1','json'))),Promise.all(NAMES.map(n=>load('assets/models/rocket/'+n+'.glb?v=2','arrayBuffer')))]);
+      fields=raw.map(makeField);const cad=models.map(parseGLB);body=raster(cad[0].body,[165,181,195]);noses=cad.map(m=>raster(m.nose,[194,211,218]));
+      bodyOutline=outline(body.mask);noseOutline=outline(noses[0].mask);masks=noses.map(n=>maskUnion(body.mask,n.mask));
+      if(!masks.every(m=>m.alpha.some((v,i)=>i%4===3&&v>0)))throw Error('CAD projection is empty');
+      ready=true;status.hidden=true;status.style.display='none';layer.style.display='block';old.style.visibility='hidden';caption.textContent='Original CAD · solved 120 mph CFD, interpolated center-plane · steady-flow tracers slowed';draw(0);player.dispatchEvent(new Event('loadedmetadata'));
     }
     function tick(now){raf=0;if(paused||!ready)return;const dt=last?Math.min((now-last)/1000,.05):0;last=now;t=Math.min(DURATION,t+dt);draw(dt);if(t>=DURATION){paused=true;ended=true;player.dispatchEvent(new Event('ended'));return;}raf=requestAnimationFrame(tick);}
-    player.play=async()=>{if(ended)return;const e=++epoch;paused=false;try{if(!initializing)initializing=init();await initializing;if(e!==epoch||paused)return;last=0;if(!raf)raf=requestAnimationFrame(tick);player.dispatchEvent(new Event('play'));}catch(err){if(e!==epoch)return;paused=true;failed=true;initializing=null;status.hidden=false;status.style.display='grid';status.textContent='Unable to load the CAD / CFD visualization. Replay to retry, or open the aerodynamic study.';console.error(err);player.dispatchEvent(new Event('error'));}};
+    player.play=async()=>{if(ended)return;const e=++epoch;paused=false;layer.style.display='block';old.style.visibility='hidden';try{if(!initializing)initializing=init();await initializing;if(e!==epoch||paused)return;last=0;if(!raf)raf=requestAnimationFrame(tick);player.dispatchEvent(new Event('play'));}catch(err){if(e!==epoch)return;paused=true;failed=true;initializing=null;ready=false;layer.style.display='none';old.style.visibility='visible';caption.textContent='CAD poster · animation unavailable ('+String(err.message||err).slice(0,100)+'). Replay to retry.';console.error('Rocket showcase initialization:',err);player.dispatchEvent(new Event('error'));}};
     player.pause=()=>{epoch++;paused=true;if(raf)cancelAnimationFrame(raf);raf=0;last=0;player.dispatchEvent(new Event('pause'));};
-    player.load=()=>{player.pause();t=0;ended=false;failed=false;active=-1;if(ready)draw(0);else status.textContent='Rocket aerodynamics · preparing original CAD and solved CFD';};
+    player.load=()=>{player.pause();t=0;ended=false;failed=false;active=-1;if(ready)draw(0);else{status.hidden=false;status.style.display='grid';status.textContent='Rocket aerodynamics · preparing original CAD and solved CFD';layer.style.display='block';old.style.visibility='hidden';}};
     return player;
   }
   window.createRocketShowcase=rocketController;

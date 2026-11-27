@@ -1,6 +1,6 @@
 # Rocket showcase V15 — pre-render review (not approved)
 
-Status: proposed; do not dispatch a renderer until owner explicitly approves. V14 remains the homepage version. No existing media, CFD samples, or renderer has been modified.
+Status: owner approved starting the V15 preview render on November 26, 2026 (Mountain Time). Renderer and workflow implementation still required; keep V14 live until preview review. V14 remains the homepage version. No existing media, CFD samples, or renderer has been modified.
 
 ## Verified V14 findings
 - The current homepage references `assets/rocket-cfd-build-v14.mp4`. V14 construction is a Canny/silhouette edge mask revealed by a vertical wipe, not sequential CAD feature drawing.

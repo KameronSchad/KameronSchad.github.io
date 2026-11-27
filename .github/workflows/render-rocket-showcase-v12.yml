@@ -1,0 +1,45 @@
+name: Render rocket showcase v12 pressure preview
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/render-rocket-showcase-v12.yml'
+      - 'scripts/render-rocket-showcase-v12.py'
+      - 'assets/cfd/*-samples-v10.json'
+      - 'assets/cfd/pressure-v7.json'
+permissions:
+  contents: write
+concurrency:
+  group: rocket-showcase-v12-render
+  cancel-in-progress: true
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python -m pip install --disable-pip-version-check numpy==1.26.4 opencv-python-headless==4.10.0.84 Pillow==11.0.0 numba==0.61.2 scipy==1.15.3
+      - name: Render and validate
+        run: |
+          python -m py_compile scripts/render-rocket-showcase-v12.py
+          python scripts/render-rocket-showcase-v12.py
+          ffmpeg -v error -i assets/rocket-cfd-build-v12.mp4 -f null -
+      - name: Commit V12 preview assets without replacing the current homepage
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B main origin/main
+          git add assets/rocket-cfd-build-v12.mp4 assets/rocket-cfd-build-v12-poster.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish validated rocket pressure-field V12 preview assets"
+            git push origin main
+          fi

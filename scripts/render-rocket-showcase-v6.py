@@ -40,7 +40,7 @@ def source_mask(f):
     m[:round(H*.09)]=0; m[round(H*.87):]=0
     m[:,:round(W*.13)]=0; m[:,round(W*.87):]=0
     m=cv2.morphologyEx(m,cv2.MORPH_CLOSE,np.ones((5,5),np.uint8))
-    n,l,stats,_=cv2.connectedComponentsWithStats(m,8)
+    n,l,stats,_=cv2.connectedComponentsWithStats(m,connectivity=8)
     if n<2: return np.zeros((H,W),np.uint8)
     i=1+np.argmax(stats[1:,cv2.CC_STAT_AREA])
     return (l==i).astype('uint8')
@@ -52,7 +52,9 @@ def measure(f):
     return (len(x),x.min(),y.min(),x.max(),y.max(),angle)
 def neutral(f):
     # Change filled surfaces only: narrow CAD sketch lines retain their original color.
-    m=source_mask(f)
+    m=(f.max(axis=2)>65).astype('uint8')
+    m[:round(H*.09)]=0; m[round(H*.87):]=0
+    m[:,:round(W*.13)]=0; m[:,round(W*.87):]=0
     interior=cv2.morphologyEx(m,cv2.MORPH_OPEN,np.ones((7,7),np.uint8))
     alpha=cv2.GaussianBlur(interior.astype(np.float32),(5,5),0)[...,None]
     # One silver-blue material; retain the original per-pixel specular shading.

@@ -250,7 +250,7 @@ class Tracers:
         pts=np.rint(np.stack([FX+(self.history[:,:,0]-X0)*S,CY-self.history[:,:,1]*S],axis=-1)).astype(np.int32)
         for k in range(1,len(pts)):
             c=int(25+105*k/(len(pts)-1))
-            cv2.polylines(overlay,[p for p in pts[k-1:k+1].transpose(1,0,2)],False,(c,c,c),1 if k<8 else 2,cv2.LINE_AA)
+            cv2.polylines(overlay,list(np.ascontiguousarray(pts[k-1:k+1].transpose(1,0,2),dtype=np.int32)),False,(c,c,c),1 if k<8 else 2,cv2.LINE_AA)
         for x,y in pts[-1]:
             if 0<=x<W and 0<=y<H: cv2.circle(overlay,(int(x),int(y)),2,(210,225,235),-1,cv2.LINE_AA)
         overlay[f.solid]=0

@@ -478,7 +478,7 @@ class Tracers:
         self.paths=paths
         self.lengths=np.array([len(p) for p in paths])
         self.exits=exits
-        eligible=valid&(self.lengths>4)&(exits|(self.lengths>=self.window+2))
+        eligible=valid&(self.lengths>4)&(exits|(self.lengths>=self.window+3))
         self.inlet=np.flatnonzero(eligible)
         print(f.name,'upstream seeds',len(paths),'eligible',len(self.inlet),'unresolved short',int((~eligible&valid).sum()),'triangle-rejected',int((~valid).sum()),'triangle-tested segments',checked,'eligible reverse',int((eligible&rev).sum()),'eligible slow',int((eligible&low).sum()),flush=True)
         if len(self.inlet)<20:raise RuntimeError('Insufficient supported upstream trajectories')
@@ -562,14 +562,19 @@ class Tracers:
         self.history[:-1]=self.history[1:];self.history[-1]=p
         overlay=np.zeros((H,W,3),np.uint8)
         pts=np.rint(np.stack([FX+(self.history[:,:,0]-X0)*S,CY-self.history[:,:,1]*S],axis=-1)).astype(np.int32)
-        # Depth-test the center of each short rendered segment.
+        # Depth-test each sampled pixel along every short rendered segment.
         for k in range(1,len(pts)):
             c=int(25+110*k/(len(pts)-1))
             for i in range(self.n):
                 a,b=pts[k-1:k+1,i]; da,db=self.history[k-1:k+1,i,2]
-                mid=np.rint((a+b)*.5).astype(int);x,y=mid
-                if 0<=x<W and 0<=y<H and (da+db)*.5>self.f.depth[y,x]+.008:
-                    cv2.line(overlay,tuple(a),tuple(b),(c,c,c),1,cv2.LINE_AA)
+                count=max(1,int(np.ceil(np.linalg.norm(b-a))))
+                u=np.linspace(0.,1.,count+1)
+                pp=np.rint(a[None,:]+u[:,None]*(b-a)[None,:]).astype(int)
+                x,y=pp.T
+                inside=(x>=0)&(x<W)&(y>=0)&(y<H)
+                x=x[inside];y=y[inside];u=u[inside]
+                visible=da+(db-da)*u>self.f.depth[y,x]+.008
+                overlay[y[visible],x[visible]]=np.maximum(overlay[y[visible],x[visible]],c)
         for i,(x,y) in enumerate(pts[-1]):
             if FX<=x<FX+FW and FY<=y<FY+FH and self.history[-1,i,2]>self.f.depth[y,x]+.008:
                 cv2.circle(overlay,(int(x),int(y)),3,(210,225,235),-1,cv2.LINE_AA)

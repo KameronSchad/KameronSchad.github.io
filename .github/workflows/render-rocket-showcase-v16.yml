@@ -1,0 +1,75 @@
+name: Render and publish rocket showcase V16
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/render-rocket-showcase-v16.yml'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: rocket-showcase-v16
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core libspatialindex-dev
+          python -m pip install --disable-pip-version-check numpy==1.26.4 opencv-python-headless==4.10.0.84 Pillow==11.0.0 numba==0.61.2 scipy==1.15.3 trimesh==4.6.8 rtree==1.4.0
+      - name: Inspect reference film timing
+        run: |
+          for f in assets/claw-motion-v4.mp4 assets/helmet-motion-v4.mp4; do
+            ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate:format=duration -of json "$f"
+          done
+      - name: Render and validate V16
+        run: |
+          python -m py_compile scripts/render-rocket-showcase-v16.py
+          python -u scripts/render-rocket-showcase-v16.py
+          ffmpeg -v error -xerror -i assets/rocket-cfd-build-v16.mp4 -f null -
+          python - <<'PY'
+          import json, subprocess
+          p=json.loads(subprocess.check_output(['ffprobe','-v','error','-select_streams','v:0','-show_entries','stream=codec_name,width,height,nb_frames,r_frame_rate:format=duration','-of','json','assets/rocket-cfd-build-v16.mp4']))
+          v=p['streams'][0]
+          assert (v['codec_name'],v['width'],v['height'],v['r_frame_rate'],int(v['nb_frames']))==('h264',2880,2160,'30/1',450),p
+          assert 14.99<=float(p['format']['duration'])<=15.0,p
+          print(p)
+          PY
+      - name: Publish validated MP4 and switch homepage together
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B main origin/main
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='assets/rocket-cfd-build-v15.mp4'
+          new='assets/rocket-cfd-build-v16.mp4'
+          if old not in s and new not in s:
+              raise RuntimeError('Homepage rocket version changed independently; refusing to overwrite it.')
+          s=s.replace(old,new).replace('assets/rocket-cfd-build-v15-poster.webp','assets/rocket-cfd-build-v16-poster.webp')
+          s=s.replace('Progressive CAD feature drawing and solid surface reveal','Progressive CAD line drawing and unified surface reveal')
+          p.write_text(s)
+          PY
+          git add index.html assets/rocket-cfd-build-v16.mp4 assets/rocket-cfd-build-v16-poster.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish validated 15-second rocket CFD V16 on homepage"
+            git push origin main
+          fi
+      - name: Request GitHub Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"; then
+            echo "::warning::V16 is committed to main, but Pages rebuild could not be requested with the workflow token. Check the Pages deployment."
+          fi

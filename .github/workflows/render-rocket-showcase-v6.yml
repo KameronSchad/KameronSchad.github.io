@@ -1,0 +1,55 @@
+name: Render rocket showcase v6
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/render-rocket-showcase-v6.yml'
+      - 'scripts/render-rocket-showcase-v6.py'
+permissions:
+  contents: write
+concurrency:
+  group: rocket-showcase-render
+  cancel-in-progress: true
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python -m pip install --disable-pip-version-check numpy==1.26.4 opencv-python-headless==4.10.0.84 Pillow==11.0.0
+      - name: Render and validate
+        run: |
+          python -m py_compile scripts/render-rocket-showcase-v6.py
+          python scripts/render-rocket-showcase-v6.py
+          ffmpeg -v error -i assets/rocket-cfd-build-v6.mp4 -f null -
+      - name: Publish only the validated MP4 and matching poster
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B main origin/main
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='assets/rocket-cfd-build-v5.mp4'
+          new='assets/rocket-cfd-build-v6.mp4'
+          if old not in s and new not in s:
+              raise SystemExit('Homepage no longer points to the expected rocket animation; refusing to replace it.')
+          s=s.replace(old,new).replace('assets/rocket-cfd-build-v5-poster.webp','assets/rocket-cfd-build-v6-poster.webp')
+          s=s.replace('Original STEP projection · solved CFD contours and slowed velocity tracers','Original STEP projection · solved steady CFD streamlines and slowed velocity tracers')
+          p.write_text(s)
+          PY
+          git add index.html assets/rocket-cfd-build-v6.mp4 assets/rocket-cfd-build-v6-poster.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish aligned single-material rocket CFD showcase v6"
+            git push origin main
+          fi
